@@ -118,12 +118,14 @@
     <ClCompile Include="Doublelinkedlist.cpp" />
     <ClCompile Include="Linkedlist.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Node.cpp" />
     <ClCompile Include="Queue.cpp" />
     <ClCompile Include="Stack.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Doublelinkedlist.h" />
     <ClInclude Include="Linkedlist.h" />
+    <ClInclude Include="Node.h" />
     <ClInclude Include="Queue.h" />
     <ClInclude Include="Stack.h" />
   </ItemGroup>
