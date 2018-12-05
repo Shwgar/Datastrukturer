@@ -3,15 +3,16 @@
 #include "enums.h"
 
 
-template<class T>
-class Doublelinkedlist
+template<typename...> class Doublelinkedlist;
+template<typename T, typename K>
+class Doublelinkedlist<T, K>
 {
 private:
-	DoubleNode<T> *head;
-	DoubleNode<T> *tail;
+	DoubleNode<T, K> *head;
+	DoubleNode<T, K> *tail;
 	int list_size;
 	//int max_size; ska inte behövas
-	
+
 public:
 	Doublelinkedlist();
 	~Doublelinkedlist();
@@ -21,11 +22,10 @@ public:
 	bool InsertLast(T data, K key);
 
 
-
 };
 
-template<class T>
-Doublelinkedlist<T>::Doublelinkedlist()
+template<typename T, typename K>
+Doublelinkedlist<T, K>::Doublelinkedlist()
 {
 	//this->max_size = max_size;
 	this->head = nullptr;
@@ -33,10 +33,10 @@ Doublelinkedlist<T>::Doublelinkedlist()
 	this->list_size = 0;
 }
 
-template<class T>
-Doublelinkedlist<T>::~Doublelinkedlist()
+template<typename T, typename K>
+Doublelinkedlist<T, K>::~Doublelinkedlist()
 {
-	DoubleNode<T> *temp = nullptr;
+	DoubleNode<T, K> *temp = nullptr;
 	for (int i = 0; i < this->list_size; i++) {
 		temp = this->head->next;
 		delete head;
@@ -50,12 +50,11 @@ DoubleNode<T, K>* Doublelinkedlist<T, K>::getHead() {
 template<typename T, typename K>
 DoubleNode<T, K>* Doublelinkedlist<T, K>::getTail() {
 	return this->tail;
-
 }
 
-template<class T>
-bool Doublelinkedlist<T>::InsertFirst(T data, int key) {
-	DoubleNode<T> *newNode = new DoubleNode<T>(data, key);
+template<typename T, typename K>
+bool Doublelinkedlist<T, K>::InsertFirst(T data, K key) {
+	DoubleNode<T, K> *newNode = new DoubleNode<T, K>(data, key);
 	if (this->list_size == 0)
 		this->tail = newNode;
 	else {
