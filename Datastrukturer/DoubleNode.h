@@ -5,7 +5,7 @@ template<typename T, typename K>
 class DoubleNode<T, K> : public Node<T, K>
 {
 private:
-	
+
 public:
 	DoubleNode<T, K> *prev;
 	DoubleNode<T, K> *next;

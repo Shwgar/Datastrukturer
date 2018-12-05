@@ -23,4 +23,3 @@ template<typename T, typename K>
 SingleNode<T, K>::~SingleNode()
 {
 }
-
