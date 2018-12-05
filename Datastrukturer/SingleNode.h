@@ -1,7 +1,8 @@
 #pragma once
 #include "Node.h"
-template<class T>
-class SingleNode : public Node<T>
+template<typename...> class SingleNode;
+template<typename T, typename K>
+class SingleNode<T, K> : public Node<T, K>
 {
 private:
 
@@ -11,14 +12,15 @@ public:
 	SingleNode<T> *next;
 };
 
-template<class T>
-SingleNode<T>::SingleNode(T data, T key) : Node<T>(data, key)
+
+template<typename T, typename K>
+SingleNode<T, K>::SingleNode(T data, T key) : Node<T>(data, key)
 {
 	this->next = nullptr;
 }
 
-template<class T>
-SingleNode<T>::~SingleNode()
+template<typename T, typename K>
+SingleNode<T, K>::~SingleNode()
 {
 }
 
