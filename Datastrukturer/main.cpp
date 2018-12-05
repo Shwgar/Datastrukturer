@@ -1,57 +1,21 @@
 #include <iostream>
-#include "Queue.h"
 
-int main() {
-	Queue<int> queue(5);
+#include<string>
+#include <vector>
+#include "Doublelinkedlist.h"
 
-	queue.Enqueue(4);
-	queue.PrintFrontRear();
+void main() {
+	std::cout << "hello world" << std::endl;
+	std::cout << "hello ladaadad world" << std::endl;
+	Doublelinkedlist<std::string> stringlist;
+	//int * test = new int;
+	//*test = 2;
+	stringlist.InsertFirst("hej", 1);
+	//stringlist.InsertFirst(44, 2);
 
-	queue.Enqueue(43);
-	queue.PrintFrontRear();
+	std::cout << stringlist.getHead() << " " << stringlist.getTail();
 
-	queue.Enqueue(24);
-	queue.PrintFrontRear();
+	system("pause");
+ 
 
-	queue.Enqueue(87);
-	queue.PrintFrontRear();
-
-	queue.Enqueue(22);
-	queue.PrintFrontRear();
-
-	queue.Enqueue(11);
-	queue.PrintFrontRear();
-	queue.PrintQueue();
-
-	std::cout << "Dequeued " << queue.Dequeue() << std::endl;
-	queue.PrintFrontRear();
-	queue.PrintQueue();
-
-	std::cout << "Dequeued " << queue.Dequeue() << std::endl;
-	queue.PrintFrontRear();
-	queue.PrintQueue();
-
-	std::cout << "Dequeued " << queue.Dequeue() << std::endl;
-	queue.PrintFrontRear();
-	queue.PrintQueue();
-
-	std::cout << "Dequeued " << queue.Dequeue() << std::endl;
-	queue.PrintFrontRear();
-	queue.PrintQueue();
-
-	std::cout << "Dequeued " << queue.Dequeue() << std::endl;
-	queue.PrintFrontRear();
-	queue.PrintQueue();
-
-	std::cout << "Dequeued " << queue.Dequeue() << std::endl;
-	queue.PrintFrontRear();
-	queue.PrintQueue();
-
-
-	int test = queue.Dequeue();
-	std::cout << "Dequeued " << queue.Dequeue() << std::endl;
-	queue.PrintFrontRear();
-	queue.PrintQueue();
-
-	return 0;
 }
