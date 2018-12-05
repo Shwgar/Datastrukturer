@@ -11,7 +11,7 @@ private:
 	DoubleNode<T, K> *head;
 	DoubleNode<T, K> *tail;
 	int list_size;
-	int max_size;
+	//int max_size; ska inte behövas
 	
 public:
 	Doublelinkedlist();
