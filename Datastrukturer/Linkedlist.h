@@ -8,6 +8,6 @@ private:
 public:
 	Linkedlist();
 	~Linkedlist();
-	void AddToList(LinkedList *linkedList, int id, const char *txt);
+	//void AddToList(LinkedList *linkedList, int id, const char *txt);
 };
 
