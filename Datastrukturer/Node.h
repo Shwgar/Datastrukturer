@@ -6,5 +6,8 @@ protected:
 	T *data;
 	Node *next;
 public:
+	Node(T data);
+	T getData();
+	~Node();
 };
 
