@@ -7,6 +7,7 @@ TEST(LinkedListTests, CheckThatAddedItemIsAtListHead) {
 	Linkedlist<int> list;
 	list.InsertFirst(9000, 1);
 	EXPECT_EQ(9000, list.getHead().getData());
+
 }
 
 TEST(LinkedListTests, CheckThatWhenAddingNewItemListHeadIsMovedToNewItemNext) {

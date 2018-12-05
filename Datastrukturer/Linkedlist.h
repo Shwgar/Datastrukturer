@@ -15,7 +15,8 @@ public:
 	~Linkedlist();
 	SingleNode<T> getHead();
 	int GetCount();
-	bool InsertFirst(T data, int key);
+	bool InsertFirst(T data, T key);
+
 
 
 };
@@ -50,7 +51,7 @@ SingleNode<T> Linkedlist<T>::getHead() {
 
 
 template<class T>
-bool Linkedlist<T>::InsertFirst(T data, int key) {
+bool Linkedlist<T>::InsertFirst(T data, T key) {
 	SingleNode<T> *newNode = new SingleNode<T>(data, key);
 	if (this->list_size != 0)
 	{

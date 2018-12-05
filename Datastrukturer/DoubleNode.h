@@ -1,27 +1,26 @@
 #pragma once
 #include "Node.h"
-template<typename...> class DoubleNode;
-template<typename T, typename K>
-class DoubleNode<T, K> : public Node<T, K>
+template<class T>
+class DoubleNode : public Node<T>
 {
 private:
 	
 public:
-	DoubleNode<T, K> *prev;
-	DoubleNode<T, K> *next;
-	DoubleNode(T data, K key);
+	DoubleNode<T> *prev;
+	DoubleNode<T> *next;
+	DoubleNode(T data, int key);
 	~DoubleNode();
 };
 
-template<typename T, typename K>
-DoubleNode<T, K>::DoubleNode(T data, K key) : Node<T, K>(data, key)
+template<class T>
+DoubleNode<T>::DoubleNode(T data, int key) : Node<T>(data, key)
 {
 	this->prev = nullptr;
 	this->next = nullptr;
 }
 
-template<typename T, typename K>
-DoubleNode<T, K>::~DoubleNode()
+template<class T>
+DoubleNode<T>::~DoubleNode()
 {
 }
 
