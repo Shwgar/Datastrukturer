@@ -115,7 +115,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="main%27.cpp" />
+    <ClCompile Include="Doublelinkedlist.cpp" />
+    <ClCompile Include="Linkedlist.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Queue.cpp" />
+    <ClCompile Include="Stack.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Doublelinkedlist.h" />
+    <ClInclude Include="Linkedlist.h" />
+    <ClInclude Include="Queue.h" />
+    <ClInclude Include="Stack.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
