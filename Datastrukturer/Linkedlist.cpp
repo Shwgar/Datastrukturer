@@ -1,37 +1,18 @@
 #include "Linkedlist.h"
 
-
-
-Linkedlist::Linkedlist()
+template <class T>
+void Linkedlist<T>::AddToList(T objectType, Node<T> *nextNode)
 {
-
-
-}
-
-
-Linkedlist::~Linkedlist()
-{
-}
-
-#include "LinkedList.h"
-
-void AddToList(LinkedList *linkedList, int id, const char *txt)
-{
-	struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
-	newNode->id = id;
-	newNode->txt = (char*)malloc(sizeof(char) * strlen(txt) + 1);
-	strcpy(newNode->txt, txt);
+	Node<T> newNode = new Node<T>;
+	newNode->data = objectType;
 
 	if (linkedList->count == 0)
 	{
 		newNode->next = NULL;
-		newNode->previous = NULL;
-		linkedList->first = newNode;
-		linkedList->last = newNode;
+		linkedList = newNode;
 	}
 	else
 	{
-		linkedList->first->previous = newNode;
 		newNode->next = linkedList->first;
 		linkedList->first = newNode;
 	}
