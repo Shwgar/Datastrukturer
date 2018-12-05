@@ -13,7 +13,7 @@ private:
 public:
 	Linkedlist();
 	~Linkedlist();
-	T getData();
+	SingleNode<T, K>* getHead();
 	int GetCount();
 	bool InsertFirst(T data, T key);
 
@@ -31,7 +31,7 @@ Linkedlist<T, K>::Linkedlist()
 template<typename T, typename K>
 Linkedlist<T, K>::~Linkedlist()
 {
-	SingleNode<T> *temp = nullptr;
+	SingleNode<T, K> *temp = nullptr;
 	for (int i = 0; i < this->list_size; i++) {
 		temp = this->head->next;
 		delete head;
@@ -45,14 +45,14 @@ int Linkedlist<T, K>::GetCount() {
 }
 
 template<typename T, typename K>
-T Linkedlist<T, K>::getData() {
-	return *this->head;
+SingleNode<T, K>* Linkedlist<T, K>::getHead() {
+	return this->head;
 }
 
 
 template<typename T, typename K>
 bool Linkedlist<T, K>::InsertFirst(T data, T key) {
-	SingleNode<T> *newNode = new SingleNode<T>(data, key);
+	SingleNode<T, K> *newNode = new SingleNode<T, K>(data, key);
 	if (this->list_size != 0)
 	{
 		newNode->next = this->head;

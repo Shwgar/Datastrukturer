@@ -4,15 +4,17 @@
 
 
 TEST(LinkedListTests, CheckThatAddedItemIsAtListHead) {
-	Linkedlist<int, int> list;
-	int returnNumber = list.getData();
+
+	Linkedlist<int, int> list;;
 	list.InsertFirst(9000, 1);
-	EXPECT_EQ(9000, list.getData());
+	EXPECT_EQ(9000, list.getHead()->getData());
+
 }
 
 TEST(LinkedListTests, CheckThatWhenAddingNewItemListHeadIsMovedToNewItemNext) {
 	Linkedlist<int, int> list;
 	list.InsertFirst(9000, 1);
 	list.InsertFirst(1, 2);
-	EXPECT_EQ(9000, list.;
+	SingleNode<int, int> *temp = list.getHead()->next;
+	EXPECT_EQ(9000, temp->getData());
 }

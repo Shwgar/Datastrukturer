@@ -9,12 +9,12 @@ private:
 public:
 	SingleNode(T data, T key);
 	~SingleNode();
-	SingleNode<T> *next;
+	SingleNode<T, K> *next;
 };
 
 
 template<typename T, typename K>
-SingleNode<T, K>::SingleNode(T data, T key) : Node<T>(data, key)
+SingleNode<T, K>::SingleNode(T data, T key) : Node<T, K>(data, key)
 {
 	this->next = nullptr;
 }
