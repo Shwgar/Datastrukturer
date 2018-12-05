@@ -1,28 +1,28 @@
 #include "gtest/gtest.h"
 #include "../Datastrukturer/Doublelinkedlist.h"
 TEST(Doublelinkedlisttests, WhenAddingOneThingToListHeadShouldBeWhatYouAdded) {
-	Doublelinkedlist<int> testlist;
+	Doublelinkedlist<int, int> testlist;
 	testlist.InsertFirst(123, 1);
-	EXPECT_EQ(123, testlist.getHead());
+	EXPECT_EQ(123, testlist.getHead()->getData());
   
 }
 TEST(Doublelinkedlisttests, WhenAddingTwoThingsToListHeadShouldBeWhatYouAddedLast) {
-	Doublelinkedlist<int> testlist;
+	Doublelinkedlist<int, int> testlist;
 	testlist.InsertFirst(123, 1);
 	testlist.InsertFirst(124, 2);
-	EXPECT_EQ(124, testlist.getHead());
+	EXPECT_EQ(124, testlist.getHead()->getData());
 
 }
 TEST(Doublelinkedlisttests, WhenAddingTwoThingsToListTailShouldBeWhatYouAddedFirst) {
-	Doublelinkedlist<int> testlist;
+	Doublelinkedlist<int, int> testlist;
 	testlist.InsertFirst(123, 1);
 	testlist.InsertFirst(124, 2);
-	EXPECT_EQ(123, testlist.getTail());
+	EXPECT_EQ(123, testlist.getTail()->getData());
 
 }
 TEST(Doublelinkedlisttests, WhenAddingThreeThingsToListTheMiddleShouldPointToHead) {
-	Doublelinkedlist<int> testlist;
+	Doublelinkedlist<int, int> testlist;
 	testlist.InsertFirst(123, 1);
 	testlist.InsertFirst(124, 2);
-	EXPECT_EQ(123, testlist.getTail());
+	EXPECT_EQ(123, testlist.getTail()->getData());
 }

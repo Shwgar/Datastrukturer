@@ -16,9 +16,10 @@ private:
 public:
 	Doublelinkedlist();
 	~Doublelinkedlist();
-	T getHead();
-	T getTail();
+	DoubleNode<T, K>* getHead();
+	DoubleNode<T, K>* getTail();
 	bool InsertFirst(T data, K key);
+	bool InsertLast(T data, K key);
 
 
 };
@@ -43,12 +44,12 @@ Doublelinkedlist<T, K>::~Doublelinkedlist()
 	}
 }
 template<typename T, typename K>
-T Doublelinkedlist<T, K>::getHead() {
-	return this->head->getData();
+DoubleNode<T, K>* Doublelinkedlist<T, K>::getHead() {
+	return this->head;
 }
 template<typename T, typename K>
-T Doublelinkedlist<T, K>::getTail() {
-	return this->tail->getData();
+DoubleNode<T, K>* Doublelinkedlist<T, K>::getTail() {
+	return this->tail;
 }
 
 template<typename T, typename K>
@@ -61,6 +62,20 @@ bool Doublelinkedlist<T, K>::InsertFirst(T data, K key) {
 		this->head->prev = newNode;
 	}
 	this->head = newNode;
+	this->list_size++;
+	return true;
+}
+template<typename T, typename K>
+bool Doublelinkedlist<T, K>::InsertLast(T data, K key) {
+	DoubleNode<T, K> *newNode = new DoubleNode<T, K>(data, key);
+	if (this->list_size == 0) {
+		this->head = newNode;
+	}
+	else {
+		newNode->prev = this->tail;
+		this->tail->next = newNode;
+	}
+	this->tail = newNode;
 	this->list_size++;
 	return true;
 }
