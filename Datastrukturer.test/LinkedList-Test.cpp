@@ -5,8 +5,10 @@
 
 TEST(LinkedListTests, CheckThatAddedItemIsAtListHead) {
 	Linkedlist<int> list;
-	list.InsertFirst(9000, 1);
-	EXPECT_EQ(9000, list.getHead().getData());
+	int number = 1;
+	int returnNumber = list.getHead().
+	list.InsertFirst(9000, number);
+	EXPECT_EQ(9000, list.getHead.);
 }
 
 TEST(LinkedListTests, CheckThatWhenAddingNewItemListHeadIsMovedToNewItemNext) {
