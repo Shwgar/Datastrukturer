@@ -116,6 +116,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Doublelinkedlist.cpp" />
+    <ClCompile Include="DoubleNode.cpp" />
     <ClCompile Include="Linkedlist.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Node.cpp" />
@@ -124,6 +125,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Doublelinkedlist.h" />
+    <ClInclude Include="DoubleNode.h" />
     <ClInclude Include="Linkedlist.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="Queue.h" />

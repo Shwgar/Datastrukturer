@@ -4,8 +4,8 @@ class Node
 {
 protected:
 	T *data;
-	Node *next;
 public:
+	Node *next;
 	Node(T data);
 	T getData();
 	~Node();

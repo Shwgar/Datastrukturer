@@ -12,5 +12,4 @@ T Node<T>::getData() {
 template<class T>
  Node<T>::~Node() {
 	 delete this->data;
-	 delete this->next;
 }
