@@ -10,14 +10,16 @@ private:
 	DoubleNode<T> *head;
 	DoubleNode<T> *tail;
 	int list_size;
-	//int max_size; ska inte behövas
+	//int max_size; ska inte behÃ¶vas
 	
 public:
 	Doublelinkedlist();
 	~Doublelinkedlist();
-	T getHead();
-	T getTail();
-	bool InsertFirst(T data, int key);
+	DoubleNode<T, K>* getHead();
+	DoubleNode<T, K>* getTail();
+	bool InsertFirst(T data, K key);
+	bool InsertLast(T data, K key);
+
 
 
 };
@@ -41,13 +43,14 @@ Doublelinkedlist<T>::~Doublelinkedlist()
 		head = temp;
 	}
 }
-template<class T>
-T Doublelinkedlist<T>::getHead() {
-	return this->head->getData();
+template<typename T, typename K>
+DoubleNode<T, K>* Doublelinkedlist<T, K>::getHead() {
+	return this->head;
 }
-template<class T>
-T Doublelinkedlist<T>::getTail() {
-	return this->tail->getData();
+template<typename T, typename K>
+DoubleNode<T, K>* Doublelinkedlist<T, K>::getTail() {
+	return this->tail;
+
 }
 
 template<class T>
@@ -60,6 +63,20 @@ bool Doublelinkedlist<T>::InsertFirst(T data, int key) {
 		this->head->prev = newNode;
 	}
 	this->head = newNode;
+	this->list_size++;
+	return true;
+}
+template<typename T, typename K>
+bool Doublelinkedlist<T, K>::InsertLast(T data, K key) {
+	DoubleNode<T, K> *newNode = new DoubleNode<T, K>(data, key);
+	if (this->list_size == 0) {
+		this->head = newNode;
+	}
+	else {
+		newNode->prev = this->tail;
+		this->tail->next = newNode;
+	}
+	this->tail = newNode;
 	this->list_size++;
 	return true;
 }
