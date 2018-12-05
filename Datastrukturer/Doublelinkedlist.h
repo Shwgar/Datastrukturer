@@ -1,5 +1,6 @@
 #pragma once
 #include "DoubleNode.h"
+#include "enums.h"
 template<class T>
 class Doublelinkedlist
 {
@@ -12,6 +13,8 @@ private:
 public:
 	Doublelinkedlist(int max_size = 0);
 	~Doublelinkedlist();
-
+	T* getHead();
+	T* getTail();
+	LIST_ERRORS Insert(T *data, int index = 0);
 };
 

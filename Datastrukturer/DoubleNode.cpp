@@ -2,7 +2,7 @@
 
 
 template<class T>
-DoubleNode<T>::DoubleNode(T data) : Node(data)
+DoubleNode<T>::DoubleNode(T data) : Node<T>(data)
 {
 }
 

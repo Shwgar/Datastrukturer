@@ -1,7 +1,7 @@
 #pragma once
 #include "Node.h"
 template<class T>
-class DoubleNode : public Node
+class DoubleNode : public Node<T>
 {
 private:
 	
