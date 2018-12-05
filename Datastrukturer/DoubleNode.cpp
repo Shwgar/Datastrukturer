@@ -1,12 +1,14 @@
-#include "DoubleNode.h"
-
-
-template<class T>
-DoubleNode<T>::DoubleNode(T data) : Node<T>(data)
-{
-}
-
-template<class T>
-DoubleNode<T>::~DoubleNode()
-{
-}
+//#include "DoubleNode.h"
+//
+//
+//template<class T>
+//DoubleNode<T>::DoubleNode(T data, int key) : Node<T>(data, key)
+//{
+//	this->prev = nullptr;
+//	this->next = nullptr;
+//}
+//
+//template<class T>
+//DoubleNode<T>::~DoubleNode()
+//{
+//}

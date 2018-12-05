@@ -6,8 +6,21 @@ class DoubleNode : public Node<T>
 private:
 	
 public:
-	Node<T> *prev;
-	DoubleNode(T data);
+	DoubleNode<T> *prev;
+	DoubleNode<T> *next;
+	DoubleNode(T data, int key);
 	~DoubleNode();
 };
+
+template<class T>
+DoubleNode<T>::DoubleNode(T data, int key) : Node<T>(data, key)
+{
+	this->prev = nullptr;
+	this->next = nullptr;
+}
+
+template<class T>
+DoubleNode<T>::~DoubleNode()
+{
+}
 

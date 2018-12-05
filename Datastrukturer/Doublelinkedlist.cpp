@@ -1,41 +1,44 @@
-#include "Doublelinkedlist.h"
-
-
-template<class T>
-Doublelinkedlist<T>::Doublelinkedlist(int max_size)
-{
-	this->max_size = max_size;
-}
-
-template<class T>
-Doublelinkedlist<T>::~Doublelinkedlist()
-{
-}
-template<class T>
-T* Doublelinkedlist<T>::getHead() {
-	return this->head->data;
-}
-template<class T>
-T* Doublelinkedlist<T>::getTail() {
-	return this->tail->data;
-}
-
-template<class T>
-LIST_ERRORS Doublelinkedlist<T>::Insert(T *data, int index) {
-
-	
-
-
-	if (linkedlist->counter >= linkedlist->maxsize)
-		RemoveLast(linkedlist);
-	Node * newnode = NewNode(id, txt);
-	if (linkedlist->counter != 0) {
-		newnode->next = linkedlist->head;
-		linkedlist->head->prev = newnode;
-	}
-	if (linkedlist->counter == 0) {
-		linkedlist->tail = newnode;
-	}
-	linkedlist->head = newnode;
-	linkedlist->counter += 1;
-}
+//#include "Doublelinkedlist.h"
+//
+//template class Doublelinkedlist<int>;
+//template<class T>
+//Doublelinkedlist<T>::Doublelinkedlist()
+//{
+//	//this->max_size = max_size;
+//	this->head = nullptr;
+//	this->tail = nullptr;
+//	this->list_size = 0;
+//}
+//
+//template<class T>
+//Doublelinkedlist<T>::~Doublelinkedlist()
+//{
+//	DoubleNode<T> *temp = nullptr;
+//	for (int i = 0; i < this->list_size; i++) {
+//		temp = this->head->next;
+//		delete head;
+//		head = temp;
+//	}
+//}
+//template<class T>
+//T Doublelinkedlist<T>::getHead() {
+//	return this->head->getData();
+//}
+//template<class T>
+//T Doublelinkedlist<T>::getTail() {
+//	return this->tail->getData();
+//}
+//
+//template<class T>
+//bool Doublelinkedlist<T>::InsertFirst(T data, int key) {
+//	DoubleNode<T> *newNode = new DoubleNode<T>(data,key);
+//	if (this->list_size == 0)
+//		this->tail = newNode;
+//	else {
+//		newNode->next = this->head;
+//		this->head->prev = newNode;
+//	}
+//	this->head = newNode;
+//	this->list_size++;
+//	return true;
+//}
