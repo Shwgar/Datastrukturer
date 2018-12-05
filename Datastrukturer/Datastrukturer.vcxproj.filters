@@ -52,5 +52,8 @@
     <ClInclude Include="enums.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="SingleNode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
