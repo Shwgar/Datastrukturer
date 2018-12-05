@@ -6,7 +6,7 @@
 void main() {
 	std::cout << "hello world" << std::endl;
 	std::cout << "hello ladaadad world" << std::endl;
-	Doublelinkedlist<std::string> stringlist;
+	Doublelinkedlist<std::string, int> stringlist;
 	//int * test = new int;
 	//*test = 2;
 	stringlist.InsertFirst("hej", 1);
