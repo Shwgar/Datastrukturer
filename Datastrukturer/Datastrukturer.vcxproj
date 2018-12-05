@@ -124,6 +124,7 @@
     <ClInclude Include="Linkedlist.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="Queue.h" />
+    <ClInclude Include="SingleNode.h" />
     <ClInclude Include="Stack.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
