@@ -1,9 +1,10 @@
 #pragma once
-template<class datatype>
+#include "Node.h"
+template<class T>
 class Doublelinkedlist
 {
 private:
-
+	
 public:
 	typedef struct Node Node;
 	struct Node {
