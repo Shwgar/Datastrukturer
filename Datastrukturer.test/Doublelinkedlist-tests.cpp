@@ -20,3 +20,9 @@ TEST(Doublelinkedlisttests, WhenAddingTwoThingsToListTailShouldBeWhatYouAddedFir
 	EXPECT_EQ(123, testlist.getTail());
 
 }
+TEST(Doublelinkedlisttests, WhenAddingThreeThingsToListTheMiddleShouldPointToHead) {
+	Doublelinkedlist<int> testlist;
+	testlist.InsertFirst(123, 1);
+	testlist.InsertFirst(124, 2);
+	EXPECT_EQ(123, testlist.getTail());
+}
