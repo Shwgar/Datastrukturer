@@ -1,34 +1,34 @@
 #pragma once
-template<class T>
-class Node
+template<typename...> class Node;
+template<typename T, typename K>
+class Node<T, K>
 {
 protected:
 	T data;
-	int key;
+	K key;
 public:
-	//Node<T> *next;
-	Node(T data, int key);
+	Node(T data, K key);
 	T getData();
-	int getKey();
+	K getKey();
 	virtual ~Node();
 };
 
-template<class T>
-Node<T>::Node(T data, int key) {
+template<typename T, typename K>
+Node<T, K>::Node(T data, K key) {
 	this->data = data;
 	this->key = key;
 	// this->next = nullptr;
 }
-template<class T>
-T Node<T>::getData() {
+template<typename T, typename K>
+T Node<T, K>::getData() {
 	return this->data;
 }
-template<class T>
-int Node<T>::getKey() {
+template<typename T, typename K>
+K Node<T, K>::getKey() {
 	return this->key;
 }
-template<class T>
-Node<T>::~Node() {
+template<typename T, typename K>
+Node<T, K>::~Node() {
 	//delete this->data;
 }
 
