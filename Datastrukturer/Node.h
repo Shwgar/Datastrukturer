@@ -5,7 +5,7 @@ class Node
 protected:
 	T *data;
 public:
-	Node *next;
+	Node<T> *next;
 	Node(T data);
 	T getData();
 	~Node();

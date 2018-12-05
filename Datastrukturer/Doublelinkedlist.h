@@ -1,24 +1,17 @@
 #pragma once
-#include "Node.h"
+#include "DoubleNode.h"
 template<class T>
 class Doublelinkedlist
 {
 private:
+	DoubleNode<T> *head;
+	DoubleNode<T> *tail;
+	int list_size;
+	int max_size;
 	
 public:
-	typedef struct Node Node;
-	struct Node {
-		int id;
-		char *txt;
-		struct Node *next, *prev;
-	};
-
-	typedef struct {
-		struct Node *head, *tail;
-		int counter;
-		int maxsize;
-	} LinkedList;
-	Doublelinkedlist();
+	Doublelinkedlist(int max_size = 0);
 	~Doublelinkedlist();
+
 };
 

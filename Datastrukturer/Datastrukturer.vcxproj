@@ -126,6 +126,7 @@
   <ItemGroup>
     <ClInclude Include="Doublelinkedlist.h" />
     <ClInclude Include="DoubleNode.h" />
+    <ClInclude Include="enums.h" />
     <ClInclude Include="Linkedlist.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="Queue.h" />

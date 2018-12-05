@@ -6,7 +6,7 @@ class DoubleNode : public Node
 private:
 	
 public:
-	T *prev;
+	Node<T> *prev;
 	DoubleNode(T data);
 	~DoubleNode();
 };
