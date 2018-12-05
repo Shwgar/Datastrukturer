@@ -2,18 +2,18 @@
 #include "SingleNode.h"
 #include "enums.h"
 
-
-template<class T>
-class Linkedlist
+template<typename...> class Linkedlist;
+template<typename T, typename K>
+class Linkedlist<T, K>
 {
 private:
-	SingleNode<T> *head;
+	SingleNode<T, K> *head;
 	int list_size;
 
 public:
 	Linkedlist();
 	~Linkedlist();
-	SingleNode<T> getHead();
+	SingleNode<T, K>* getHead();
 	int GetCount();
 	bool InsertFirst(T data, T key);
 
@@ -21,17 +21,17 @@ public:
 
 };
 
-template<class T>
-Linkedlist<T>::Linkedlist()
+template<typename T, typename K>
+Linkedlist<T, K>::Linkedlist()
 {
 	this->head = nullptr;
 	this->list_size = 0;
 }
 
-template<class T>
-Linkedlist<T>::~Linkedlist()
+template<typename T, typename K>
+Linkedlist<T, K>::~Linkedlist()
 {
-	SingleNode<T> *temp = nullptr;
+	SingleNode<T, K> *temp = nullptr;
 	for (int i = 0; i < this->list_size; i++) {
 		temp = this->head->next;
 		delete head;
@@ -39,20 +39,20 @@ Linkedlist<T>::~Linkedlist()
 	}
 }
 
-template<class T>
-int Linkedlist<T>::GetCount() {
+template<typename T, typename K>
+int Linkedlist<T, K>::GetCount() {
 	return this->list_size;
 }
 
-template<class T>
-SingleNode<T> Linkedlist<T>::getHead() {
-	return *this->head;
+template<typename T, typename K>
+SingleNode<T, K>* Linkedlist<T, K>::getHead() {
+	return this->head;
 }
 
 
-template<class T>
-bool Linkedlist<T>::InsertFirst(T data, T key) {
-	SingleNode<T> *newNode = new SingleNode<T>(data, key);
+template<typename T, typename K>
+bool Linkedlist<T, K>::InsertFirst(T data, T key) {
+	SingleNode<T, K> *newNode = new SingleNode<T, K>(data, key);
 	if (this->list_size != 0)
 	{
 		newNode->next = this->head;
