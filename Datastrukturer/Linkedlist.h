@@ -13,7 +13,7 @@ private:
 public:
 	Linkedlist();
 	~Linkedlist();
-	T getHead();
+	SingleNode<T> getHead();
 	int GetCount();
 	bool InsertFirst(T data, int key);
 
@@ -44,8 +44,8 @@ int Linkedlist<T>::GetCount() {
 }
 
 template<class T>
-T Linkedlist<T>::getHead() {
-	return this->head->getData();
+SingleNode<T> Linkedlist<T>::getHead() {
+	return *this->head;
 }
 
 
