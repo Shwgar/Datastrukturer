@@ -21,4 +21,3 @@ template<class T>
 SingleNode<T>::~SingleNode()
 {
 }
-

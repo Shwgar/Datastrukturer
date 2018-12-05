@@ -18,6 +18,7 @@ public:
 	bool InsertFirst(T data, T key);
 
 
+
 };
 
 template<class T>
