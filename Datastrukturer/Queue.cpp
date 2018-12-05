@@ -1,12 +1,13 @@
 #include "Queue.h"
 
 
-
-Queue::Queue()
+template <class T>
+Queue<T>::Queue(T objectType, int capacity)
 {
+	
 }
 
-
-Queue::~Queue()
+template <class T>
+Queue<T>::~Queue()
 {
 }
