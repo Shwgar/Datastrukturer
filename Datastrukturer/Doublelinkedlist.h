@@ -18,8 +18,10 @@ public:
 	~Doublelinkedlist();
 	DoubleNode<T, K>* getHead();
 	DoubleNode<T, K>* getTail();
+	int GetCount();
 	bool InsertFirst(T data, K key);
 	bool InsertLast(T data, K key);
+	bool InsertAfter(T data, K key, int index);
 
 
 };
@@ -42,6 +44,10 @@ Doublelinkedlist<T, K>::~Doublelinkedlist()
 		delete head;
 		head = temp;
 	}
+}
+template<typename T, typename K>
+int Doublelinkedlist<T, K>::GetCount() {
+	return this->list_size;
 }
 template<typename T, typename K>
 DoubleNode<T, K>* Doublelinkedlist<T, K>::getHead() {
@@ -78,4 +84,25 @@ bool Doublelinkedlist<T, K>::InsertLast(T data, K key) {
 	this->tail = newNode;
 	this->list_size++;
 	return true;
+}
+
+template<typename T, typename K>
+bool Doublelinkedlist<T, K>::InsertAfter(T data, K key, int index) {
+	if (this->list_size == 0 || index < 1 || index > list_size)
+		return false;
+	DoubleNode<T, K> *newNode = new DoubleNode<T, K>(data, key);
+	DoubleNode<T, K> *tempNode = this->head;
+	for (int i = 1; i < index; i++) {
+		tempNode = tempNode->next;
+	}
+	if (tempNode->next != nullptr) {
+		newNode->next = tempNode->next;
+		tempNode->next->prev = newNode;
+	}
+	else {
+		tail = newNode;
+	}
+	tempNode->next = newNode;
+	newNode->prev = tempNode;
+	this->list_size++;
 }
