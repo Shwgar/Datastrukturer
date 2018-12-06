@@ -16,9 +16,8 @@ public:
 	SingleNode<T, K>* getHead();
 	int GetCount();
 	bool InsertFirst(T data, T key);
-
-
-
+	bool InsertAfterIndex(T data, T key, int indexnr);
+	bool InsertAfterKey(T data, T insertKey, T searchKey);
 };
 
 template<typename T, typename K>
@@ -61,4 +60,70 @@ bool Linkedlist<T, K>::InsertFirst(T data, T key) {
 	this->list_size++;
 
 	return true;
+}
+
+template<typename T, typename K>
+bool Linkedlist<T, K>::InsertAfterIndex(T data, T key, int indexnr)
+{
+	if (indexnr > list_size + 1) return false;
+	int index = 0;
+	SingleNode<T, K> *newNode = new SingleNode<T, K>(data, key);
+	SingleNode<T, K> *tempNode = this->getHead()->next;
+	for (int i = 1; i < indexnr; i++)
+	{
+		if (indexnr == 2)
+		{
+			newNode->next = tempNode;
+			this->head->next = newNode;
+			this->list_size++;
+			return true;
+		}
+		else if (i < indexnr)
+		{
+			tempNode = tempNode->next;
+		}
+		else if (i == indexnr)
+		{
+			newNode->next = tempNode->next;
+			tempNode->next = newNode;
+			this->list_size++;
+			return true;
+		}
+
+	}
+}
+
+template<typename T, typename K>
+bool Linkedlist<T, K>::InsertAfterKey(T data, T insertKey, T searchKey)
+{
+
+	int index = 0;
+	SingleNode<T, K> *newNode = new SingleNode<T, K>(data, insertKey);
+	SingleNode<T, K> *tempNode = this->getHead();
+	for (int i = 0; i < list_size; i++)
+	{
+		if (i == 0 && searchKey == tempNode->getKey())
+		{
+			newNode->next = tempNode;
+			this->head->next = newNode;
+			this->list_size++;
+			return true;
+		}
+		else if (searchKey == tempNode->getKey())
+		{
+			newNode->next = tempNode->next;
+			tempNode->next = newNode;
+			this->list_size++;
+			return true;
+		}
+		else
+		{
+			if (tempNode->next == nullptr)
+			{
+				return false;
+			}
+			tempNode = tempNode->next;
+		}
+
+	}
 }
