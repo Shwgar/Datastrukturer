@@ -10,7 +10,7 @@ public:
 
 	T PopFront();
 	T Peek() const;
-	void PushBack(T objectType);
+	void PushBack(T object);
 
 	bool IsFull() const;
 	bool IsEmpty() const;	
