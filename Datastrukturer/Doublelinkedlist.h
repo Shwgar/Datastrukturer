@@ -16,13 +16,13 @@ private:
 public:
 	Doublelinkedlist();
 	~Doublelinkedlist();
-	DoubleNode<T, K>* getHead();
-	DoubleNode<T, K>* getTail();
+	T getHead();
+	T getTail();
 	int GetCount();
 	bool InsertFirst(T data, K key);
 	bool InsertLast(T data, K key);
-	bool InsertAfter(T data, K key, int index);
-
+	bool InsertAfterIndex(T data, K key, int index);
+	bool InsertAfterKey(T data, K key, K keyindex);
 
 
 };
@@ -51,12 +51,12 @@ int Doublelinkedlist<T, K>::GetCount() {
 	return this->list_size;
 }
 template<typename T, typename K>
-DoubleNode<T, K>* Doublelinkedlist<T, K>::getHead() {
-	return this->head;
+T Doublelinkedlist<T, K>::getHead() {
+	return this->head->getData();
 }
 template<typename T, typename K>
-DoubleNode<T, K>* Doublelinkedlist<T, K>::getTail() {
-	return this->tail;
+T Doublelinkedlist<T, K>::getTail() {
+	return this->tail->getData();
 }
 
 template<typename T, typename K>
@@ -88,7 +88,7 @@ bool Doublelinkedlist<T, K>::InsertLast(T data, K key) {
 }
 
 template<typename T, typename K>
-bool Doublelinkedlist<T, K>::InsertAfter(T data, K key, int index) {
+bool Doublelinkedlist<T, K>::InsertAfterIndex(T data, K key, int index) {
 	if (this->list_size == 0 || index < 1 || index > list_size)
 		return false;
 	DoubleNode<T, K> *newNode = new DoubleNode<T, K>(data, key);
@@ -96,6 +96,30 @@ bool Doublelinkedlist<T, K>::InsertAfter(T data, K key, int index) {
 	for (int i = 1; i < index; i++) {
 		tempNode = tempNode->next;
 	}
+	if (tempNode->next != nullptr) {
+		newNode->next = tempNode->next;
+		tempNode->next->prev = newNode;
+	}
+	else {
+		tail = newNode;
+	}
+	tempNode->next = newNode;
+	newNode->prev = tempNode;
+	this->list_size++;
+}
+template<typename T, typename K>
+bool Doublelinkedlist<T, K>::InsertAfterKey(T data, K key, K keyindex) {
+	if (this->list_size == 0)
+		return false;
+	DoubleNode<T, K> *newNode = new DoubleNode<T, K>(data, key);
+	DoubleNode<T, K> *tempNode = this->head;
+	for (int i = 0; i < list_size; i++) {
+		if (tempNode->getKey() == keyindex)
+			break;
+		tempNode = tempNode->next;
+	}
+	if (tempNode->getKey() != keyindex)
+		return false;
 	if (tempNode->next != nullptr) {
 		newNode->next = tempNode->next;
 		tempNode->next->prev = newNode;
