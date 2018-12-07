@@ -24,6 +24,7 @@ public:
 	bool InsertAfter(T data, K key, int index);
 
 
+
 };
 
 template<typename T, typename K>
