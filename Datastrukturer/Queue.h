@@ -5,7 +5,7 @@ template<typename T>
 class Queue
 {
 public:
-	Queue(const int capacity);
+	Queue(const unsigned int capacity);
 	~Queue();
 
 	T PopFront();
@@ -25,7 +25,7 @@ private:
 
 
 template<typename T>
-Queue<T>::Queue(const int capacity) : capacity(capacity)
+Queue<T>::Queue(const unsigned int capacity) : capacity(capacity)
 {
 	size = 0;
 	front = 0;
