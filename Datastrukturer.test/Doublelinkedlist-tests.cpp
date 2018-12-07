@@ -64,13 +64,22 @@ TEST(Doublelinkedlisttests, InsertingFirstLastAndAfterSameDataMiddleShouldBeCorr
 
 	//EXPECT_EQ(124, testlist.getHead()->next->getData());
 }
-TEST(Doublelinkedlisttests, alltests) {
+//TEST(Doublelinkedlisttests, alltests) {
+//	Doublelinkedlist<int, int> testlist;
+//	DoubleNode<int, int> *testnode = new DoubleNode<int, int>(555, 5);
+//	testlist.InsertFirst(123, 1);
+//	testlist.InsertFirst(124, 2);
+//	testlist.InsertFirst(125, 3);
+//	testlist.InsertFirst(126, 4);
+//	testlist.InsertAfterIndex(127, 5, 3);
+//	EXPECT_EQ(127, testlist.getTail()->prev->getData());
+//}
+TEST(Doublelinkedlisttests, testing) {
 	Doublelinkedlist<int, int> testlist;
-	DoubleNode<int, int> *testnode = new DoubleNode<int, int>(555, 5);
 	testlist.InsertFirst(123, 1);
-	testlist.InsertFirst(124, 2);
-	testlist.InsertFirst(125, 3);
-	testlist.InsertFirst(126, 4);
-	testlist.InsertAfterIndex(127, 5, 3);
-	EXPECT_EQ(127, testlist.getTail()->prev->getData());
+	testlist.InsertLast(124, 2);
+	testlist.InsertAfterIndex(125, 3, 2);
+	int recieved = testlist.DeleteFirst();
+
+	EXPECT_EQ(123, recieved);
 }

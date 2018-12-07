@@ -23,7 +23,9 @@ public:
 	bool InsertLast(T data, K key);
 	bool InsertAfterIndex(T data, K key, int index);
 	bool InsertAfterKey(T data, K key, K keyindex);
-
+	T DeleteFirst();
+	T DeleteLast();
+	T DeleteKey(K key);
 
 };
 
@@ -130,4 +132,71 @@ bool Doublelinkedlist<T, K>::InsertAfterKey(T data, K key, K keyindex) {
 	tempNode->next = newNode;
 	newNode->prev = tempNode;
 	this->list_size++;
+}
+template<typename T, typename K>
+T Doublelinkedlist<T, K>::DeleteFirst() {
+	if (this->list_size == 0)
+		throw std::underflow_error("List size is empty");
+	DoubleNode<T, K> tempNode = *this->head;
+	delete(this->head);
+	if (tempNode.next == nullptr) {
+		this->tail = nullptr;
+		this->head = nullptr;
+	}	
+	else {
+		tempNode.next->prev = nullptr;
+		this->head = tempNode.next;
+	}
+	this->list_size--;
+	return tempNode.getData();
+}
+template<typename T, typename K>
+T Doublelinkedlist<T, K>::DeleteLast() {
+	if (this->list_size == 0)
+		throw std::underflow_error("List size is empty");
+	DoubleNode<T, K> tempNode = *this->tail;
+	delete(this->tail);
+	if (tempNode.prev == nullptr) {
+		this->head = nullptr;
+		this->tail = nullptr;
+	}
+	else {
+		tempNode.prev->next = nullptr;
+		this->tail = tempNode.prev;
+	}
+	this->list_size--;
+	return tempNode.getData();
+}
+template<typename T, typename K>
+T Doublelinkedlist<T, K>::DeleteKey(K key) {
+	if (this->list_size == 0)
+		throw std::underflow_error("List size is empty");
+	DoubleNode<T, K> *tempNode = this->head;
+	for (int i = 0; i < list_size; i++) {
+		if (tempNode->getKey() == key)
+			break;
+		tempNode = tempNode->next;
+	}
+	if (tempNode->getKey() != key)
+		throw std::invalid_argument("Key not found in list");
+	DoubleNode<T, K> deleteNode = *tempNode;
+	delete(tempNode);
+	if (this->list_size == 1) {
+		this->head = nullptr;
+		this->tail = nullptr;
+	}
+	else if (deleteNode.next == nullptr) {
+		this->tail = deleteNode.prev;
+		deleteNode.prev->next = nullptr;
+	}
+	else if (deleteNode.prev == nullptr) {
+		this->head = deleteNode.next;
+		deleteNode.next->prev = nullptr;
+	}
+	else {
+		deleteNode.next->prev = deleteNode.prev;
+		deleteNode.prev->next = deleteNode.next;
+	}
+	this->list_size--;
+	return deleteNode.getData();
 }
