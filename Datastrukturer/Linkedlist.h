@@ -15,9 +15,12 @@ public:
 	~Linkedlist();
 	SingleNode<T, K>* getHead();
 	int GetCount();
-	bool InsertFirst(T data, T key);
-	bool InsertAfterIndex(T data, T key, int indexnr);
-	bool InsertAfterKey(T data, T insertKey, T searchKey);
+	bool InsertFirst(T data, K key);
+	bool InsertAfterIndex(T data, K key, int indexnr);
+	bool InsertAfterKey(T data, K insertKey, K searchKey);
+	bool DeleteIndex(int indexnr);
+	bool DeleteKey(K searchKey);
+	T Search(K searchKey);
 };
 
 template<typename T, typename K>
@@ -50,7 +53,7 @@ SingleNode<T, K>* Linkedlist<T, K>::getHead() {
 
 
 template<typename T, typename K>
-bool Linkedlist<T, K>::InsertFirst(T data, T key) {
+bool Linkedlist<T, K>::InsertFirst(T data, K key) {
 	SingleNode<T, K> *newNode = new SingleNode<T, K>(data, key);
 	if (this->list_size != 0)
 	{
@@ -63,9 +66,9 @@ bool Linkedlist<T, K>::InsertFirst(T data, T key) {
 }
 
 template<typename T, typename K>
-bool Linkedlist<T, K>::InsertAfterIndex(T data, T key, int indexnr)
+bool Linkedlist<T, K>::InsertAfterIndex(T data, K key, int indexnr)
 {
-	if (indexnr > list_size + 1) return false;
+	if (indexnr > list_size) return false;
 	int index = 0;
 	SingleNode<T, K> *newNode = new SingleNode<T, K>(data, key);
 	SingleNode<T, K> *tempNode = this->getHead()->next;
@@ -94,7 +97,7 @@ bool Linkedlist<T, K>::InsertAfterIndex(T data, T key, int indexnr)
 }
 
 template<typename T, typename K>
-bool Linkedlist<T, K>::InsertAfterKey(T data, T insertKey, T searchKey)
+bool Linkedlist<T, K>::InsertAfterKey(T data, K insertKey, K searchKey)
 {
 
 	int index = 0;
@@ -127,3 +130,66 @@ bool Linkedlist<T, K>::InsertAfterKey(T data, T insertKey, T searchKey)
 
 	}
 }
+template<typename T, typename K>
+bool Linkedlist<T, K>::DeleteIndex(int indexnr)
+{
+	SingleNode<T, K> *tempNode = this->getHead();
+	SingleNode<T, K> *preNode;
+	int counter = 1;
+		if (counter == indexnr && counter == 1)
+		{
+			this->head = tempNode->next;
+			delete tempNode;
+			delete preNode;
+		}
+		while (counter != indexnr && tempNode != NULL)
+		{
+			preNode = tempNode;
+			tempNode = tempNode->next;
+			counter++;
+		}
+		if (tempNode == NULL) return false;
+		preNode->next = tempNode->next;
+		delete tempNode;
+		return true;
+}
+
+template<typename T, typename K>
+bool Linkedlist<T, K>::DeleteKey(K searchKey)
+{
+	SingleNode<T, K> *tempNode = this->getHead();
+	SingleNode<T, K> *preNode;
+	if (tempNode->getKey() == searchKey)
+	{
+		this->head = tempNode->next;
+		delete tempNode;
+		delete preNode;
+	}
+	while (tempNode != NULL && tempNode->getKey() != searchKey)
+	{
+		preNode = tempNode;
+		tempNode = tempNode->next;
+	}
+	if (tempNode == NULL) return false;
+	preNode->next = tempNode->next;
+	delete tempNode;
+	return true;
+}
+
+template<typename T, typename K>
+T Linkedlist<T, K>::Search(K searchKey)
+{
+	SingleNode<T, K> *tempNode = this->getHead();
+	if (tempNode->getKey() == searchKey)
+	{
+		return tempNode->getData();
+	}
+	while (tempNode != NULL && tempNode->getKey() != searchKey)
+	{
+		tempNode = tempNode->next;
+	}
+	if (tempNode == NULL) return NULL;
+	return tempNode->getData();
+
+}
+

@@ -38,3 +38,23 @@ TEST(LinkedListTests, CheckThatAddingAfterKeyReturnsTrue) {
 	bool test = list.InsertAfterKey(5,5,3);
 	EXPECT_TRUE(test);
 }
+
+TEST(LinkedListTests, CheckIfSearchReturnsRightData) {
+	Linkedlist<int, int> list;
+	list.InsertFirst(9000, 1);
+	list.InsertFirst(2, 2);
+	list.InsertFirst(3, 3);
+	list.InsertFirst(4, 4);
+	int testReturn = list.Search(3);
+	EXPECT_EQ(3, testReturn);
+}
+
+TEST(LinkedListTests, CheckIfSearchReturnsNoDataIfNotFound) {
+	Linkedlist<int, int> list;
+	list.InsertFirst(9000, 1);
+	list.InsertFirst(2, 2);
+	list.InsertFirst(3, 3);
+	list.InsertFirst(4, 4);
+	int testReturn = list.Search(7);
+	EXPECT_EQ(NULL, testReturn);
+}
