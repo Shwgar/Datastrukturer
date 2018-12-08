@@ -5,59 +5,110 @@
 class QueueTest : public testing::Test
 {
 protected:
-	Queue<int>* queue;
+	const unsigned int capacity = 5;
+
+	Queue<int>* queueWithInts;
+	Queue<float>* queueWithFloats;
 
 	virtual void SetUp()
 	{
-		queue = new Queue<int>(5);
+		queueWithInts = new Queue<int>(capacity);
+		queueWithFloats = new Queue<float>(capacity);
 	}
 
 	virtual void TearDown()
 	{
-		delete queue;
+		delete queueWithInts;
+		delete queueWithFloats;
+	}
+
+	virtual void FillQueueWithInts()
+	{
+		for (int i = 0; i < capacity; i++)
+		{
+			queueWithInts->PushBack(i);
+		}
 	}
 };
 
 
+TEST_F(QueueTest, QueueWithFloatsShouldReturnFloats)
+{
+	queueWithFloats->PushBack(1.0f);
+	queueWithFloats->PushBack(2.0f);
+
+	EXPECT_EQ(1.0f, queueWithFloats->PopFront());
+}
+
+
 TEST_F(QueueTest, WhenQueueIsNotEmptyItShouldReturnNotEmpty)
 {
-	queue->PushBack(2);
+	queueWithInts->PushBack(1);
 
-	EXPECT_EQ(false, queue->IsEmpty());
+	EXPECT_EQ(false, queueWithInts->IsEmpty());
 }
+
+
+TEST_F(QueueTest, WhenQueueIsEmptyItShouldReturnEmpty)
+{
+	EXPECT_EQ(true, queueWithInts->IsEmpty());
+}
+
 
 
 TEST_F(QueueTest, WhenQueueIsNotEmptyAndNotFullItShouldReturnNotFull)
 {
-	queue->PushBack(2);
+	queueWithInts->PushBack(1);
 
-	EXPECT_EQ(false, queue->IsFull());
+	EXPECT_EQ(false, queueWithInts->IsFull());
 }
 
 
 TEST_F(QueueTest, WhenQueueIsFullItShouldReturnIsFull)
 {
-	for (int i = 0; i < 5; i++)
-	{
-		queue->PushBack(i);
-	}
+	FillQueueWithInts();
 
-	EXPECT_EQ(true, queue->IsFull());
+	EXPECT_EQ(true, queueWithInts->IsFull());
 }
 
 
 TEST_F(QueueTest, WhenQueueIsEmptyPopFrontShouldThrowException)
 {
-	EXPECT_THROW(queue->PopFront(), std::underflow_error);
+	EXPECT_THROW(queueWithInts->PopFront(), std::underflow_error);
 }
 
 
 TEST_F(QueueTest, WhenQueueIsFullPushBackShouldThrowException)
 {
-	for (int i = 0; i < 5; i++)
-	{
-		queue->PushBack(i);
-	}
+	FillQueueWithInts();
 
-	EXPECT_THROW(queue->PushBack(1), std::overflow_error);
+	EXPECT_THROW(queueWithInts->PushBack(1), std::overflow_error);
+}
+
+
+TEST_F(QueueTest, WhenPopFrontQueueShouldReturnFirstPushBackedItem)
+{
+	queueWithInts->PushBack(54);
+	queueWithInts->PushBack(12);
+
+	EXPECT_EQ(54, queueWithInts->PopFront());
+}
+
+
+TEST_F(QueueTest, WhenPeekQueueShouldReturnFirstPushBackedItem)
+{
+	queueWithInts->PushBack(54);
+	queueWithInts->PushBack(12);
+
+	EXPECT_EQ(54, queueWithInts->Peek());
+}
+
+
+TEST_F(QueueTest, WhenPeekQueueShouldNotRemoveFirstPushBackedItem)
+{
+	queueWithInts->PushBack(54);
+	queueWithInts->PushBack(12);
+	queueWithInts->Peek();
+
+	EXPECT_EQ(54, queueWithInts->PopFront());
 }
