@@ -201,6 +201,20 @@ T Doublelinkedlist<T, K>::DeleteKey(K key) {
 	return deleteNode.getData();
 }
 template<typename T, typename K>
-T Doublelinkedlist<T, K>::Search(K key) {
+T Doublelinkedlist<T, K>::Search(K searchKey) {
+	{
+		DoubleNode<T, K> *tempNode = this->head;
+		if (tempNode->getKey() == searchKey)
+		{
+			return tempNode->getData();
+		}
+		while (tempNode != nullptr && tempNode->getKey() != searchKey)
+		{
+			tempNode = tempNode->next;
+		}
+		if (tempNode == nullptr)
+			throw std::invalid_argument("Search key not in list");
+		return tempNode->getData();
 
+	}
 }
