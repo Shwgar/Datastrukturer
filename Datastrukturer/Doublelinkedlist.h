@@ -26,7 +26,7 @@ public:
 	T DeleteFirst();
 	T DeleteLast();
 	T DeleteKey(K key);
-
+	T Search(K key);
 };
 
 template<typename T, typename K>
@@ -199,4 +199,8 @@ T Doublelinkedlist<T, K>::DeleteKey(K key) {
 	}
 	this->list_size--;
 	return deleteNode.getData();
+}
+template<typename T, typename K>
+T Doublelinkedlist<T, K>::Search(K key) {
+
 }
