@@ -32,6 +32,24 @@ TEST(Doublelinkedlisttests, GetCountShouldReturnListSize) {
 	testlist.InsertFirst(124, 2);
 	EXPECT_EQ(2, testlist.GetCount());
 }
+TEST(Doublelinkedlisttests, GetHeadShouldReturnLastInsertFirstData) {
+	Doublelinkedlist<int, int> testlist;
+	testlist.InsertFirst(123, 1);
+	testlist.InsertFirst(124, 2);
+	testlist.InsertFirst(125, 3);
+	int recieved = testlist.getHead();
+
+	EXPECT_EQ(125, recieved);
+}
+TEST(Doublelinkedlisttests, GetTailShouldReturnFirstInsertFirstData) {
+	Doublelinkedlist<int, int> testlist;
+	testlist.InsertFirst(123, 1);
+	testlist.InsertFirst(124, 2);
+	testlist.InsertFirst(125, 3);
+	int recieved = testlist.getTail();
+
+	EXPECT_EQ(123, recieved);
+}
 TEST(Doublelinkedlisttests, WhenInsertingLastOneTimeHeadShouldBeWhatYouAdd) {
 	Doublelinkedlist<int, int> testlist;
 	testlist.InsertLast(123, 1);
@@ -64,22 +82,58 @@ TEST(Doublelinkedlisttests, InsertingFirstLastAndAfterSameDataMiddleShouldBeCorr
 
 	//EXPECT_EQ(124, testlist.getHead()->next->getData());
 }
-//TEST(Doublelinkedlisttests, alltests) {
+TEST(Doublelinkedlisttests, DeletingFirstShouldReturnWhatYouLastInsertedFirst) {
+	Doublelinkedlist<int, int> testlist;
+	testlist.InsertFirst(123, 1);
+	testlist.InsertFirst(124, 2);
+	testlist.InsertFirst(125, 3);
+	int recieved = testlist.DeleteFirst();
+
+	EXPECT_EQ(125, recieved);
+}
+//TEST(Doublelinkedlisttests, DeletingFirstShouldReturnWhatYouLastInsertedFirst) {
 //	Doublelinkedlist<int, int> testlist;
-//	DoubleNode<int, int> *testnode = new DoubleNode<int, int>(555, 5);
 //	testlist.InsertFirst(123, 1);
 //	testlist.InsertFirst(124, 2);
 //	testlist.InsertFirst(125, 3);
-//	testlist.InsertFirst(126, 4);
-//	testlist.InsertAfterIndex(127, 5, 3);
-//	EXPECT_EQ(127, testlist.getTail()->prev->getData());
+//	int recieved = testlist.DeleteFirst();
+//
+//	EXPECT_EQ(125, recieved);
 //}
-TEST(Doublelinkedlisttests, testing) {
+TEST(Doublelinkedlisttests, DeleteLastShouldReturnWhatYouFirstInsertedFirst) {
 	Doublelinkedlist<int, int> testlist;
 	testlist.InsertFirst(123, 1);
-	testlist.InsertLast(124, 2);
-	testlist.InsertAfterIndex(125, 3, 2);
-	int recieved = testlist.DeleteFirst();
+	testlist.InsertFirst(124, 2);
+	testlist.InsertFirst(125, 3);
+	int recieved = testlist.DeleteLast();
 
 	EXPECT_EQ(123, recieved);
+}
+TEST(Doublelinkedlisttests, DeleteLastShouldRemoveWhatYouInsertedFirst) {
+	Doublelinkedlist<int, int> testlist;
+	testlist.InsertFirst(123, 1);
+	testlist.InsertFirst(124, 2);
+	testlist.InsertFirst(125, 3);
+	testlist.DeleteLast();
+
+	EXPECT_THROW(testlist.Search(1),std::invalid_argument);
+}
+//TEST(Doublelinkedlisttests, DeleteLastShouldRemoveWhatYouInsertedFirst) {
+//	Doublelinkedlist<int, int> testlist;
+//	testlist.InsertFirst(123, 1);
+//	testlist.InsertFirst(124, 2);
+//	testlist.InsertFirst(125, 3);
+//	testlist.DeleteLast();
+//
+//	EXPECT_THROW(testlist.Search(1), std::invalid_argument);
+//}
+TEST(Doublelinkedlisttests, DeleteKeyWithEmptyListShouldThrowException) {
+	Doublelinkedlist<int, int> testlist;
+	EXPECT_THROW(testlist.DeleteKey(1), std::underflow_error);
+}
+TEST(Doublelinkedlisttests, DeleteKeyWithInvalidKeyShouldThrowException) {
+	Doublelinkedlist<int, int> testlist;
+	testlist.InsertFirst(123, 1);
+	testlist.InsertFirst(124, 2);
+	EXPECT_THROW(testlist.DeleteKey(3), std::invalid_argument);
 }
