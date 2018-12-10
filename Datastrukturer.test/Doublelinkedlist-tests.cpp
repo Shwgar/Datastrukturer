@@ -91,15 +91,6 @@ TEST(Doublelinkedlisttests, DeletingFirstShouldReturnWhatYouLastInsertedFirst) {
 
 	EXPECT_EQ(125, recieved);
 }
-//TEST(Doublelinkedlisttests, DeletingFirstShouldReturnWhatYouLastInsertedFirst) {
-//	Doublelinkedlist<int, int> testlist;
-//	testlist.InsertFirst(123, 1);
-//	testlist.InsertFirst(124, 2);
-//	testlist.InsertFirst(125, 3);
-//	int recieved = testlist.DeleteFirst();
-//
-//	EXPECT_EQ(125, recieved);
-//}
 TEST(Doublelinkedlisttests, DeleteLastShouldReturnWhatYouFirstInsertedFirst) {
 	Doublelinkedlist<int, int> testlist;
 	testlist.InsertFirst(123, 1);
@@ -118,15 +109,6 @@ TEST(Doublelinkedlisttests, DeleteLastShouldRemoveWhatYouInsertedFirst) {
 
 	EXPECT_THROW(testlist.Search(1),std::invalid_argument);
 }
-//TEST(Doublelinkedlisttests, DeleteLastShouldRemoveWhatYouInsertedFirst) {
-//	Doublelinkedlist<int, int> testlist;
-//	testlist.InsertFirst(123, 1);
-//	testlist.InsertFirst(124, 2);
-//	testlist.InsertFirst(125, 3);
-//	testlist.DeleteLast();
-//
-//	EXPECT_THROW(testlist.Search(1), std::invalid_argument);
-//}
 TEST(Doublelinkedlisttests, DeleteKeyWithEmptyListShouldThrowException) {
 	Doublelinkedlist<int, int> testlist;
 	EXPECT_THROW(testlist.DeleteKey(1), std::underflow_error);
