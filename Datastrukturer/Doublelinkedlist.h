@@ -110,18 +110,16 @@ bool Doublelinkedlist<T, K>::InsertAfterIndex(T data, K key, int index) {
 	this->list_size++;
 }
 template<typename T, typename K>
-bool Doublelinkedlist<T, K>::InsertAfterKey(T data, K key, K keyindex) {
+bool Doublelinkedlist<T, K>::InsertAfterKey(T data, K key, K searchKey) {
 	if (this->list_size == 0)
 		return false;
 	DoubleNode<T, K> *newNode = new DoubleNode<T, K>(data, key);
 	DoubleNode<T, K> *tempNode = this->head;
-	for (int i = 0; i < list_size; i++) {
-		if (tempNode->getKey() == keyindex)
-			break;
+
+	while (tempNode != nullptr && tempNode->getKey() != searchKey)
 		tempNode = tempNode->next;
-	}
-	if (tempNode->getKey() != keyindex)
-		return false;
+	if (tempNode == nullptr) return false;
+
 	if (tempNode->next != nullptr) {
 		newNode->next = tempNode->next;
 		tempNode->next->prev = newNode;
@@ -168,17 +166,15 @@ T Doublelinkedlist<T, K>::DeleteLast() {
 	return tempNode.getData();
 }
 template<typename T, typename K>
-T Doublelinkedlist<T, K>::DeleteKey(K key) {
+T Doublelinkedlist<T, K>::DeleteKey(K searchKey) {
 	if (this->list_size == 0)
 		throw std::underflow_error("List size is empty");
 	DoubleNode<T, K> *tempNode = this->head;
-	for (int i = 0; i < list_size; i++) {
-		if (tempNode->getKey() == key)
-			break;
+
+	while (tempNode != nullptr && tempNode->getKey() != searchKey)
 		tempNode = tempNode->next;
-	}
-	if (tempNode->getKey() != key)
-		throw std::invalid_argument("Key not found in list");
+	if (tempNode == nullptr) throw std::invalid_argument("Key not found in list");
+
 	DoubleNode<T, K> deleteNode = *tempNode;
 	delete(tempNode);
 	if (this->list_size == 1) {
