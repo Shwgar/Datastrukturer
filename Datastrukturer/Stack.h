@@ -33,7 +33,7 @@ Stack<T>::Stack(const unsigned int capacity) : capacity(capacity)
 template<typename T>
 Stack<T>::~Stack() 
 {
-	delete stack;
+	delete[] stack;
 }
 
 

@@ -1,6 +1,8 @@
 #include "gtest/gtest.h"
 #include "../Datastrukturer/Queue.h"
 #include <exception>
+#include <string>
+#include <vector>
 
 class QueueTest : public testing::Test
 {
@@ -9,17 +11,23 @@ protected:
 
 	Queue<int>* queueWithInts;
 	Queue<float>* queueWithFloats;
+	Queue<std::string>* queueWithStrings;
+	Queue<std::vector<int>>* queueWithVectors;
 
 	virtual void SetUp()
 	{
 		queueWithInts = new Queue<int>(capacity);
 		queueWithFloats = new Queue<float>(capacity);
+		queueWithStrings = new Queue<std::string>(capacity);
+		queueWithVectors = new Queue<std::vector<int>>(capacity);
 	}
 
 	virtual void TearDown()
 	{
 		delete queueWithInts;
 		delete queueWithFloats;
+		delete queueWithStrings;
+		delete queueWithVectors;
 	}
 
 	virtual void FillQueueWithInts()
@@ -30,6 +38,34 @@ protected:
 		}
 	}
 };
+
+
+TEST_F(QueueTest, QueueWithStringsShouldReturnStrings)
+{
+	std::string testString1 = "Testing testing";
+	std::string testString2 = "Hello World!";
+
+	queueWithStrings->PushBack(testString1);
+	queueWithStrings->PushBack(testString2);
+
+	EXPECT_EQ(testString1, queueWithStrings->PopFront());
+}
+
+
+TEST_F(QueueTest, QueueWithVectorsShouldReturnVectors)
+{
+	std::vector<int> testVector1;
+	testVector1.push_back(8);
+	testVector1.push_back(1);
+	queueWithVectors->PushBack(testVector1);
+
+	std::vector<int> testVector2;
+	testVector2.push_back(2);
+	testVector2.push_back(5);
+	queueWithVectors->PushBack(testVector2);
+
+	EXPECT_EQ(testVector1, queueWithVectors->PopFront());
+}
 
 
 TEST_F(QueueTest, QueueWithFloatsShouldReturnFloats)
@@ -45,13 +81,13 @@ TEST_F(QueueTest, WhenQueueIsNotEmptyItShouldReturnNotEmpty)
 {
 	queueWithInts->PushBack(1);
 
-	EXPECT_EQ(false, queueWithInts->IsEmpty());
+	EXPECT_FALSE(queueWithInts->IsEmpty());
 }
 
 
 TEST_F(QueueTest, WhenQueueIsEmptyItShouldReturnEmpty)
 {
-	EXPECT_EQ(true, queueWithInts->IsEmpty());
+	EXPECT_TRUE(queueWithInts->IsEmpty());
 }
 
 
@@ -60,7 +96,7 @@ TEST_F(QueueTest, WhenQueueIsNotEmptyAndNotFullItShouldReturnNotFull)
 {
 	queueWithInts->PushBack(1);
 
-	EXPECT_EQ(false, queueWithInts->IsFull());
+	EXPECT_FALSE(queueWithInts->IsFull());
 }
 
 
@@ -68,7 +104,7 @@ TEST_F(QueueTest, WhenQueueIsFullItShouldReturnIsFull)
 {
 	FillQueueWithInts();
 
-	EXPECT_EQ(true, queueWithInts->IsFull());
+	EXPECT_TRUE(queueWithInts->IsFull());
 }
 
 
