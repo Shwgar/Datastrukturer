@@ -44,7 +44,7 @@ Doublelinkedlist<T, K>::~Doublelinkedlist()
 	DoubleNode<T, K> *temp = nullptr;
 	for (int i = 0; i < this->list_size; i++) {
 		temp = this->head->next;
-		delete head;
+		delete[] head;
 		head = temp;
 	}
 }

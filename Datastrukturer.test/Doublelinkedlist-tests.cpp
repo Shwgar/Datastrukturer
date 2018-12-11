@@ -119,3 +119,12 @@ TEST(Doublelinkedlisttests, DeleteKeyWithInvalidKeyShouldThrowException) {
 	testlist.InsertFirst(124, 2);
 	EXPECT_THROW(testlist.DeleteKey(3), std::invalid_argument);
 }
+TEST(Doublelinkedlisttests, vectortest) {
+	Doublelinkedlist<std::vector<int>, int> testlist;
+	std::vector<int> test;
+	test.push_back(1);
+	testlist.InsertFirst(test, 1);
+	test.push_back(2);
+	testlist.InsertFirst(test, 2);
+	EXPECT_EQ(2, testlist.getHead().at(1));
+}
