@@ -7,14 +7,14 @@ class SingleNode<T, K> : public Node<T, K>
 private:
 
 public:
-	SingleNode(T data, T key);
+	SingleNode(T data, K key);
 	~SingleNode();
 	SingleNode<T, K> *next;
 };
 
 
 template<typename T, typename K>
-SingleNode<T, K>::SingleNode(T data, T key) : Node<T, K>(data, key)
+SingleNode<T, K>::SingleNode(T data, K key) : Node<T, K>(data, key)
 {
 	this->next = nullptr;
 }

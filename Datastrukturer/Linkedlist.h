@@ -140,13 +140,13 @@ template<typename T, typename K>
 bool Linkedlist<T, K>::DeleteIndex(int indexnr)
 {
 	SingleNode<T, K> *tempNode = this->getHead();
-	SingleNode<T, K> *preNode;
+	SingleNode<T, K> *preNode = nullptr;
 	int counter = 1;
 		if (counter == indexnr && counter == 1)
 		{
 			this->head = tempNode->next;
 			delete tempNode;
-			delete preNode;
+			this->list_size--;
 		}
 		while (counter != indexnr && tempNode != nullptr)
 		{
@@ -157,6 +157,7 @@ bool Linkedlist<T, K>::DeleteIndex(int indexnr)
 		if (tempNode == nullptr) return false;
 		preNode->next = tempNode->next;
 		delete tempNode;
+		this->list_size--;
 		return true;
 }
 
@@ -164,12 +165,12 @@ template<typename T, typename K>
 bool Linkedlist<T, K>::DeleteKey(K searchKey)
 {
 	SingleNode<T, K> *tempNode = this->getHead();
-	SingleNode<T, K> *preNode;
+	SingleNode<T, K> *preNode = nullptr;
 	if (tempNode->getKey() == searchKey)
 	{
 		this->head = tempNode->next;
 		delete tempNode;
-		delete preNode;
+		this->list_size--;
 	}
 	while (tempNode != nullptr && tempNode->getKey() != searchKey)
 	{
@@ -179,6 +180,7 @@ bool Linkedlist<T, K>::DeleteKey(K searchKey)
 	if (tempNode == nullptr) return false;
 	preNode->next = tempNode->next;
 	delete tempNode;
+	this->list_size--;
 	return true;
 }
 
@@ -194,7 +196,8 @@ T Linkedlist<T, K>::Search(K searchKey)
 	{
 		tempNode = tempNode->next;
 	}
-	if (tempNode == nullptr) return NULL;
+	if (tempNode == nullptr) throw std::invalid_argument("Search key not in list");
+	//if (tempNode == nullptr) return NULL;
 	return tempNode->getData();
 
 }
