@@ -37,7 +37,7 @@ Queue<T>::Queue(const unsigned int capacity) : capacity(capacity)
 template<typename T>
 Queue<T>::~Queue()
 {
-	delete queue;
+	delete[] queue;
 }
 
 
