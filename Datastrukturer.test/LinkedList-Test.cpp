@@ -142,3 +142,23 @@ TEST(LinkedListTests, WhenTryingToDeleteMinusIndexnumberShouldReturnFalse) {
 	bool result = list.DeleteIndex(-1);
 	EXPECT_EQ(false, result);
 }
+
+TEST(LinkedListTests, WhenDeletingTemplateObjectInListWithOnlyTwoItemsListCountShouldGoDown) {
+	Linkedlist<int, int> list;
+	list.InsertFirst(9000, 1);
+	list.InsertFirst(9001, 2);
+	bool result = list.DeleteIndex(1);
+	int listSize = list.GetCount();
+	EXPECT_EQ(1, listSize);
+}
+
+TEST(LinkedListTests, WhenDeletingTemplateObjectInListWithMoreItemsListCountShouldGoDown) {
+	Linkedlist<int, int> list;
+	list.InsertFirst(9000, 1);
+	list.InsertFirst(2, 2);
+	list.InsertFirst(3, 3);
+	list.InsertFirst(4, 4);
+	bool result = list.DeleteIndex(1);
+	int listSize = list.GetCount();
+	EXPECT_EQ(3, listSize);
+}

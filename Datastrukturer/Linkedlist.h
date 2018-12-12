@@ -148,6 +148,7 @@ bool Linkedlist<T, K>::DeleteIndex(int indexnr)
 			this->head = tempNode->next;
 			delete tempNode;
 			this->list_size--;
+			return true;
 		}
 		while (counter != indexnr && tempNode != nullptr)
 		{
@@ -156,6 +157,10 @@ bool Linkedlist<T, K>::DeleteIndex(int indexnr)
 			counter++;
 		}
 		if (tempNode == nullptr) return false;
+		if (list_size == 1)
+		{
+
+		}
 		preNode->next = tempNode->next;
 		delete tempNode;
 		this->list_size--;
