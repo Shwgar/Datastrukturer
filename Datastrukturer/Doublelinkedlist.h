@@ -22,7 +22,7 @@ public:
 	void InsertFirst(T data, K key);
 	void InsertLast(T data, K key);
 	bool InsertAfterIndex(T data, K key, int index);
-	bool InsertAfterKey(T data, K key, K keyindex);
+	bool InsertAfterKey(T data, K key, K searchKey);
 	T DeleteFirst();
 	T DeleteLast();
 	T DeleteKey(K key);

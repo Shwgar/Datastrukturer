@@ -91,6 +91,15 @@ TEST(Doublelinkedlisttests, DeletingFirstShouldReturnWhatYouLastInsertedFirst) {
 
 	EXPECT_EQ(125, recieved);
 }
+TEST(Doublelinkedlisttests, DeleteFirstShouldThrowExceptionWhenSearchingforThatKey) {
+	Doublelinkedlist<int, int> testlist;
+	testlist.InsertFirst(123, 1);
+	testlist.InsertFirst(124, 2);
+	testlist.InsertFirst(125, 3);
+	testlist.DeleteFirst();
+
+	EXPECT_THROW(testlist.Search(3), std::invalid_argument);
+}
 TEST(Doublelinkedlisttests, DeleteLastShouldReturnWhatYouFirstInsertedFirst) {
 	Doublelinkedlist<int, int> testlist;
 	testlist.InsertFirst(123, 1);
@@ -100,7 +109,7 @@ TEST(Doublelinkedlisttests, DeleteLastShouldReturnWhatYouFirstInsertedFirst) {
 
 	EXPECT_EQ(123, recieved);
 }
-TEST(Doublelinkedlisttests, DeleteLastShouldRemoveWhatYouInsertedFirst) {
+TEST(Doublelinkedlisttests, DeleteLastShouldThrowExceptionWhenSearchingforThatKey) {
 	Doublelinkedlist<int, int> testlist;
 	testlist.InsertFirst(123, 1);
 	testlist.InsertFirst(124, 2);
@@ -112,6 +121,14 @@ TEST(Doublelinkedlisttests, DeleteLastShouldRemoveWhatYouInsertedFirst) {
 TEST(Doublelinkedlisttests, DeleteKeyWithEmptyListShouldThrowException) {
 	Doublelinkedlist<int, int> testlist;
 	EXPECT_THROW(testlist.DeleteKey(1), std::underflow_error);
+}
+TEST(Doublelinkedlisttests, DeleteLastWithEmptyListShouldThrowException) {
+	Doublelinkedlist<int, int> testlist;
+	EXPECT_THROW(testlist.DeleteLast(), std::underflow_error);
+}
+TEST(Doublelinkedlisttests, DeleteFirstWithEmptyListShouldThrowException) {
+	Doublelinkedlist<int, int> testlist;
+	EXPECT_THROW(testlist.DeleteFirst(), std::underflow_error);
 }
 TEST(Doublelinkedlisttests, DeleteKeyWithInvalidKeyShouldThrowException) {
 	Doublelinkedlist<int, int> testlist;
@@ -130,4 +147,54 @@ TEST(Doublelinkedlisttests, ListWithVectorShouldWork) {
 	testlist.InsertFirst(test, 3);
 	testlist.DeleteKey(2);
 	EXPECT_EQ(3, testlist.Search(3).at(2));
+}
+TEST(Doublelinkedlisttests, whenThereIsSameKeyMultipleTimesSearchShouldReturnTheFirstKeyInList) {
+	Doublelinkedlist<std::string, int> testlist;
+	testlist.InsertFirst("hej", 1);
+	testlist.InsertFirst("du", 1);
+	testlist.InsertFirst("dar", 1);
+	EXPECT_EQ("dar", testlist.Search(1));
+}
+TEST(Doublelinkedlisttests, TestToMakeSureLinkingStillWorksCorrectly) {
+	Doublelinkedlist<std::string, int> testlist;
+	testlist.InsertFirst("hej", 1);
+	testlist.InsertFirst("du", 1);
+	testlist.InsertFirst("dar", 1);
+	testlist.InsertAfterKey("dur", 2, 1);
+	testlist.DeleteKey(2);
+	testlist.DeleteKey(1);
+
+	EXPECT_EQ("du", testlist.Search(1));
+}
+TEST(Doublelinkedlisttests, InsertTwoNodesAndDeleteOneGetCountShouldReturnCorrectValue) {
+	Doublelinkedlist<std::string, int> testlist;
+	testlist.InsertFirst("hej", 1);
+	testlist.InsertFirst("du", 1);
+	testlist.DeleteKey(1);
+
+	EXPECT_EQ(1, testlist.GetCount());
+}
+TEST(Doublelinkedlisttests, SearchWhenListIsEmptyShouldThrowException) {
+	Doublelinkedlist<std::string, int> testlist;
+
+	EXPECT_THROW(testlist.Search(1), std::underflow_error);
+}
+TEST(Doublelinkedlisttests, SearchForKeyThatDoesNotExistShouldThrowEception) {
+	Doublelinkedlist<std::string, int> testlist;
+	testlist.InsertFirst("hej", 2);
+	testlist.InsertAfterKey("hej", 1, 2);
+	EXPECT_THROW(testlist.Search(3), std::invalid_argument);
+}
+TEST(Doublelinkedlisttests, SearchShouldReturnCorrectData) {
+	Doublelinkedlist<std::string, int> testlist;
+	testlist.InsertFirst("hej", 2);
+	testlist.InsertAfterKey("hejjj", 1, 2);
+	EXPECT_EQ("hej", testlist.Search(2));
+}
+TEST(Doublelinkedlisttests, InsertAfterKeyShouldBecomeTailIfKeyIsTail) {
+	Doublelinkedlist<std::string, int> testlist;
+	testlist.InsertFirst("hej", 2);
+	testlist.InsertLast("daa", 1);
+	testlist.InsertAfterKey("hejjj", 3, 1);
+	EXPECT_EQ("hejjj", testlist.getTail());
 }
