@@ -80,7 +80,7 @@ TEST(Doublelinkedlisttests, InsertingFirstLastAndAfterSameDataMiddleShouldBeCorr
 	testlist.InsertLast(124,2);
 	testlist.InsertAfterIndex(125, 3, testlist.GetCount());
 
-	//EXPECT_EQ(124, testlist.getHead()->next->getData());
+	EXPECT_EQ(124, testlist.Search(2));
 }
 TEST(Doublelinkedlisttests, DeletingFirstShouldReturnWhatYouLastInsertedFirst) {
 	Doublelinkedlist<int, int> testlist;
@@ -118,4 +118,16 @@ TEST(Doublelinkedlisttests, DeleteKeyWithInvalidKeyShouldThrowException) {
 	testlist.InsertFirst(123, 1);
 	testlist.InsertFirst(124, 2);
 	EXPECT_THROW(testlist.DeleteKey(3), std::invalid_argument);
+}
+TEST(Doublelinkedlisttests, ListWithVectorShouldWork) {
+	Doublelinkedlist<std::vector<int>, int> testlist;
+	std::vector<int> test;
+	test.push_back(1);
+	testlist.InsertFirst(test, 1);
+	test.push_back(2);
+	testlist.InsertFirst(test, 2);
+	test.push_back(3);
+	testlist.InsertFirst(test, 3);
+	testlist.DeleteKey(2);
+	EXPECT_EQ(3, testlist.Search(3).at(2));
 }
