@@ -1,119 +1,99 @@
 #pragma once
-#include <iostream>
 #include <exception>
 
-template<class T>
+template<typename T>
 class Queue
 {
 public:
-	Queue(int capacity);
+	Queue(const unsigned int capacity);
 	~Queue();
 
-	T Peek();
 	T PopFront();
-	void PushBack(T objectType);
+	T Peek() const;
+	int Size() const;
+	void PushBack(T object);
 
-	void PrintFrontRear();
-	void PrintQueue();
-
+	bool IsFull() const;
+	bool IsEmpty() const;	
+	
 private:
-	bool IsFull();
-	bool IsEmpty();
-
 	T* queue;
-	int front;
-	int rear;
-	int size;
-	unsigned int capacity;
+	unsigned int size;
+	unsigned int rear;
+	unsigned int front;
+	const unsigned int capacity;
 };
 
 
-template<class T>
-Queue<T>::Queue(int capacity) : capacity(capacity)
+template<typename T>
+Queue<T>::Queue(const unsigned int capacity) : capacity(capacity)
 {
-	this->size = 0;
-	this->front = 0;
-	this->rear = capacity - 1;
-	this->queue = new T[capacity];
+	size = 0;
+	front = 0;
+	rear = capacity - 1;
+	queue = new T[capacity];
 }
 
 
-template<class T>
+template<typename T>
 Queue<T>::~Queue()
 {
-	delete this->queue;
+	delete[] queue;
 }
 
 
-template<class T>
-T Queue<T>::Peek()
-{
-	if (this->size > 0)
-	{
-		return this->queue[front];
-	}
-}
-
-
-template<class T>
+template<typename T>
 T Queue<T>::PopFront()
 {
 	if (IsEmpty())
-	{
 		throw std::underflow_error("Queue is empty.");
-	}
 
-	T objectToReturn = this->queue[front];
-	this->front = (this-> front + 1) % this->capacity;
-	this->size -= 1;
+	T objectToReturn = queue[front];
+	front = (front + 1) % capacity;
+	size--;
 
 	return objectToReturn;
 }
 
 
-template<class T>
-void Queue<T>::PushBack(T objectType)
+template<typename T>
+T Queue<T>::Peek() const
 {
-	if (not this->IsFull())
-	{
-		this->rear = (this->rear + 1) % this->capacity;
-		queue[rear] = objectType;
-		this->size += 1;
-	}
+	if (IsEmpty())
+		throw std::underflow_error("Queue is empty.");
+	
+	return queue[front];
 }
 
 
-template<class T>
-void Queue<T>::PrintFrontRear()
+template<typename T>
+int Queue<T>::Size() const
 {
-	std::cout << "Size: " << this->size << std::endl;
-	std::cout << "Front: " << this->front << std::endl;
-	std::cout << "Rear: " << this->rear << std::endl << std::endl;
+	return size;
 }
 
 
-template<class T>
-void Queue<T>::PrintQueue()
+template<typename T>
+void Queue<T>::PushBack(T object)
 {
-	for (int i = 0; i < (int)this->capacity; i++)
-	{
-		std::cout << queue[i] << " ";
-	}
-
-	std::cout << std::endl;
+	if (IsFull())
+		throw std::overflow_error("Queue is full.");
+	
+	rear = (rear + 1) % capacity;
+	queue[rear] = object;
+	size++;
 }
 
 
-template<class T>
-bool Queue<T>::IsFull()
+template<typename T>
+bool Queue<T>::IsFull() const
 {
-	std::cout << "Size: " << this->size << " Capacity: " << this->capacity << std::endl;
-	return (this->size == this->capacity);
+	return (size == capacity);
 }
 
 
-template<class T>
-bool Queue<T>::IsEmpty()
+template<typename T>
+bool Queue<T>::IsEmpty() const
 {
-	return (this->size == 0);
+	return (size == 0);
 }
