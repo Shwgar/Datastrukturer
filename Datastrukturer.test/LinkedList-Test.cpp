@@ -17,7 +17,6 @@ TEST(LinkedListTests, WhenAddingNewItemFirstAddedIsNotAtHead) {
 	Linkedlist<int, int> list;
 	list.InsertFirst(9000, 1);
 	list.InsertFirst(1, 2);
-	//SingleNode<int, int> *temp = list.getHead()->next;
 	EXPECT_NE(9000, list.getHeadData());
 }
 
@@ -132,7 +131,7 @@ TEST(LinkedListTests, WhenDeletingVectorThenVectorShoudNotBeFound) {
 	list.InsertFirst(vect1, 1);
 	list.InsertFirst(vect2, 2);
 	list.InsertFirst(vect3, 3);
-	bool result = list.DeleteKey(2);
+	list.DeleteKey(2);
 	EXPECT_THROW(std::vector<int> testReturn = list.Search(2), std::invalid_argument);
 }
 
@@ -147,7 +146,7 @@ TEST(LinkedListTests, WhenDeletingTemplateObjectInListWithOnlyTwoItemsListCountS
 	Linkedlist<int, int> list;
 	list.InsertFirst(9000, 1);
 	list.InsertFirst(9001, 2);
-	bool result = list.DeleteIndex(1);
+	list.DeleteIndex(1);
 	int listSize = list.GetCount();
 	EXPECT_EQ(1, listSize);
 }
@@ -158,7 +157,44 @@ TEST(LinkedListTests, WhenDeletingTemplateObjectInListWithMoreItemsListCountShou
 	list.InsertFirst(2, 2);
 	list.InsertFirst(3, 3);
 	list.InsertFirst(4, 4);
-	bool result = list.DeleteIndex(1);
+	list.DeleteIndex(1);
 	int listSize = list.GetCount();
 	EXPECT_EQ(3, listSize);
+}
+
+TEST(LinkedListTests, TestToSeeThatListContainsAllInputs) {
+	Linkedlist<int, int> list;
+	list.InsertFirst(9000, 1);
+	list.InsertFirst(2, 2);
+	list.InsertFirst(3, 3);
+	list.InsertFirst(4, 4);
+	int one = list.Search(1);
+	int two = list.Search(2);
+	int three = list.Search(3);
+	int four = list.Search(4);
+	int total = one + two + three + four;
+	EXPECT_EQ(9009, total);
+}
+
+TEST(LinkedListTests, WhenAddingAfterIndexItemAfterIndexShouldStillExists) {
+	Linkedlist<int, int> list;
+	list.InsertFirst(9000, 1);
+	list.InsertFirst(2, 2);
+	list.InsertFirst(3, 3);
+	list.InsertFirst(4, 4);
+	list.InsertAfterIndex(5, 5, 2);
+	int returnvalue = list.Search(3);
+	EXPECT_TRUE(3, returnvalue);
+}
+
+
+TEST(LinkedListTests, WhenAddingAfterKeyItemAfterIndexShouldStillExists) {
+	Linkedlist<int, int> list;
+	list.InsertFirst(9000, 1);
+	list.InsertFirst(2, 2);
+	list.InsertFirst(3, 3);
+	list.InsertFirst(4, 4);
+	list.InsertAfterKey(5, 5, 2);
+	int returnvalue = list.Search(3);
+	EXPECT_TRUE(3, returnvalue);
 }
