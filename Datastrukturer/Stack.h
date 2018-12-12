@@ -10,6 +10,7 @@ public:
 
 	T Pop();
 	T Peek() const;
+	int Size() const;
 	void Push(T object);
 
 	bool IsFull() const;
@@ -54,6 +55,13 @@ T Stack<T>::Peek() const
 		throw std::underflow_error("Stack is empty.");
 
 	return stack[top];
+}
+
+
+template<typename T>
+int Stack<T>::Size() const
+{
+	return (top + 1);
 }
 
 
