@@ -16,7 +16,7 @@ public:
 	~Linkedlist();
 	int GetCount();
 	T getHeadData();
-	bool InsertFirst(T data, K key);
+	void InsertFirst(T data, K key);
 	bool InsertAfterIndex(T data, K key, int indexnr);
 	bool InsertAfterKey(T data, K insertKey, K searchKey);
 	bool DeleteIndex(int indexnr);
@@ -59,7 +59,7 @@ SingleNode<T, K>* Linkedlist<T, K>::getHead() {
 
 
 template<typename T, typename K>
-bool Linkedlist<T, K>::InsertFirst(T data, K key) {
+void Linkedlist<T, K>::InsertFirst(T data, K key) {
 	SingleNode<T, K> *newNode = new SingleNode<T, K>(data, key);
 	if (this->list_size != 0)
 	{
@@ -67,14 +67,12 @@ bool Linkedlist<T, K>::InsertFirst(T data, K key) {
 	}
 	this->head = newNode;
 	this->list_size++;
-
-	return true;
 }
 
 template<typename T, typename K>
 bool Linkedlist<T, K>::InsertAfterIndex(T data, K key, int indexnr)
 {
-	if (indexnr > list_size) return false;
+	if (indexnr > list_size || indexnr < 0) return false;
 	int index = 0;
 	SingleNode<T, K> *newNode = new SingleNode<T, K>(data, key);
 	SingleNode<T, K> *tempNode = this->getHead()->next;
@@ -100,6 +98,7 @@ bool Linkedlist<T, K>::InsertAfterIndex(T data, K key, int indexnr)
 		}
 
 	}
+	return false;
 }
 
 template<typename T, typename K>
@@ -135,10 +134,12 @@ bool Linkedlist<T, K>::InsertAfterKey(T data, K insertKey, K searchKey)
 		}
 
 	}
+	return false;
 }
 template<typename T, typename K>
 bool Linkedlist<T, K>::DeleteIndex(int indexnr)
 {
+	if (list_size == 0) return false;
 	SingleNode<T, K> *tempNode = this->getHead();
 	SingleNode<T, K> *preNode = nullptr;
 	int counter = 1;
@@ -164,6 +165,7 @@ bool Linkedlist<T, K>::DeleteIndex(int indexnr)
 template<typename T, typename K>
 bool Linkedlist<T, K>::DeleteKey(K searchKey)
 {
+	if (list_size == 0) return false;
 	SingleNode<T, K> *tempNode = this->getHead();
 	SingleNode<T, K> *preNode = nullptr;
 	if (tempNode->getKey() == searchKey)
@@ -197,7 +199,6 @@ T Linkedlist<T, K>::Search(K searchKey)
 		tempNode = tempNode->next;
 	}
 	if (tempNode == nullptr) throw std::invalid_argument("Search key not in list");
-	//if (tempNode == nullptr) return NULL;
 	return tempNode->getData();
 
 }

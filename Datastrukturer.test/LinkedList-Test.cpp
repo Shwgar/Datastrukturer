@@ -5,7 +5,7 @@
 #include <vector>
 
 
-TEST(LinkedListTests, CheckThatAddedItemIsAtListHead) {
+TEST(LinkedListTests, WhenAddingItemIsAtListHead) {
 
 	Linkedlist<int, int> list;;
 	list.InsertFirst(9000, 1);
@@ -13,7 +13,7 @@ TEST(LinkedListTests, CheckThatAddedItemIsAtListHead) {
 
 }
 
-TEST(LinkedListTests, CheckThatWhenAddingNewItemFirstAddedIsNotAtHead) {
+TEST(LinkedListTests, WhenAddingNewItemFirstAddedIsNotAtHead) {
 	Linkedlist<int, int> list;
 	list.InsertFirst(9000, 1);
 	list.InsertFirst(1, 2);
@@ -21,7 +21,7 @@ TEST(LinkedListTests, CheckThatWhenAddingNewItemFirstAddedIsNotAtHead) {
 	EXPECT_NE(9000, list.getHeadData());
 }
 
-TEST(LinkedListTests, CheckThatAddingAfterIndexReturnsTrue) {
+TEST(LinkedListTests, WhenAddingAfterIndexReturnsTrue) {
 	Linkedlist<int, int> list;
 	list.InsertFirst(9000, 1);
 	list.InsertFirst(2, 2);
@@ -31,7 +31,7 @@ TEST(LinkedListTests, CheckThatAddingAfterIndexReturnsTrue) {
 	EXPECT_TRUE(test);
 }
 
-TEST(LinkedListTests, CheckThatAddingAfterKeyReturnsTrue) {
+TEST(LinkedListTests, WhenAddingAfterKeyReturnsTrue) {
 	Linkedlist<int, int> list;
 	list.InsertFirst(9000, 1);
 	list.InsertFirst(2, 2);
@@ -41,7 +41,7 @@ TEST(LinkedListTests, CheckThatAddingAfterKeyReturnsTrue) {
 	EXPECT_TRUE(test);
 }
 
-TEST(LinkedListTests, CheckIfSearchReturnsRightData) {
+TEST(LinkedListTests, WhenSearchingReturnsRightData) {
 	Linkedlist<int, int> list;
 	list.InsertFirst(9000, 1);
 	list.InsertFirst(2, 2);
@@ -51,7 +51,7 @@ TEST(LinkedListTests, CheckIfSearchReturnsRightData) {
 	EXPECT_EQ(3, testReturn);
 }
 
-TEST(LinkedListTests, CheckIfSearchReturnsThrowIfNotFound) {
+TEST(LinkedListTests, WhenSearchingReturnsThrowIfNotFound) {
 	Linkedlist<int, int> list;
 	list.InsertFirst(9000, 1);
 	list.InsertFirst(2, 2);
@@ -60,7 +60,7 @@ TEST(LinkedListTests, CheckIfSearchReturnsThrowIfNotFound) {
 	EXPECT_THROW(int testReturn = list.Search(7), std::invalid_argument);
 }
 
-TEST(LinkedListTests, CheckIfSearchAfterDeleteReturnsNull) {
+TEST(LinkedListTests, WhenSearchingAfterDeleteReturnsThrow) {
 	Linkedlist<int, int> list;
 	list.InsertFirst(9000, 1);
 	list.InsertFirst(2, 2);
@@ -71,7 +71,7 @@ TEST(LinkedListTests, CheckIfSearchAfterDeleteReturnsNull) {
 }
 
 
-TEST(LinkedListTests, CheckIfSearchReturnsRightDataWithVectors) {
+TEST(LinkedListTests, WhenSearchingReturnsRightDataWithVectors) {
 	Linkedlist<std::vector<int>, int> list;
 	std::vector<int> vect1;
 	std::vector<int> vect2;
@@ -86,3 +86,59 @@ TEST(LinkedListTests, CheckIfSearchReturnsRightDataWithVectors) {
 	EXPECT_EQ(30, testReturn.at(0));
 }
 
+TEST(LinkedListTests, WhenTryingToDeleteIndexInEmptyListReturnShouldBeFalse) {
+	Linkedlist<std::vector<int>, int> list;
+	bool result = list.DeleteIndex(2);
+	EXPECT_EQ(false, result);
+}
+
+TEST(LinkedListTests, WhenTryingToDeleteKeyInEmptyListReturnShouldBeFalse) {
+	Linkedlist<std::vector<int>, int> list;
+	bool result = list.DeleteKey(3);
+	EXPECT_EQ(false, result);
+}
+
+TEST(LinkedListTests, WhenGetingCountFromListShouldBeSameAsInsertedInTemplate) {
+	Linkedlist<int, int> list;
+	list.InsertFirst(9000, 1);
+	list.InsertFirst(2, 2);
+	int count = list.GetCount();
+	EXPECT_EQ(2, count);
+}
+
+TEST(LinkedListTests, WhenDeletingVectorAndKeyNotFoundShouldReturnFalse) {
+	Linkedlist<std::vector<int>, int> list;
+	std::vector<int> vect1;
+	std::vector<int> vect2;
+	std::vector<int> vect3;
+	vect1.push_back(10);
+	vect2.push_back(20);
+	vect3.push_back(30);
+	list.InsertFirst(vect1, 1);
+	list.InsertFirst(vect2, 2);
+	list.InsertFirst(vect3, 3);
+	bool result = list.DeleteKey(5);
+	EXPECT_EQ(false, result);
+}
+
+TEST(LinkedListTests, WhenDeletingVectorThenVectorShoudNotBeFound) {
+	Linkedlist<std::vector<int>, int> list;
+	std::vector<int> vect1;
+	std::vector<int> vect2;
+	std::vector<int> vect3;
+	vect1.push_back(10);
+	vect2.push_back(20);
+	vect3.push_back(30);
+	list.InsertFirst(vect1, 1);
+	list.InsertFirst(vect2, 2);
+	list.InsertFirst(vect3, 3);
+	bool result = list.DeleteKey(2);
+	EXPECT_THROW(std::vector<int> testReturn = list.Search(2), std::invalid_argument);
+}
+
+TEST(LinkedListTests, WhenTryingToDeleteMinusIndexnumberShouldReturnFalse) {
+	Linkedlist<int, int> list;
+	list.InsertFirst(9000, 1);
+	bool result = list.DeleteIndex(-1);
+	EXPECT_EQ(false, result);
+}
