@@ -148,3 +148,26 @@ TEST_F(QueueTest, WhenPeekQueueShouldNotRemoveFirstPushBackedItem)
 
 	EXPECT_EQ(54, queueWithInts->PopFront());
 }
+
+
+TEST_F(QueueTest, WhenQueueIsEmptySizeShouldReturnZero)
+{
+	EXPECT_EQ(0, queueWithInts->Size());
+}
+
+
+TEST_F(QueueTest, WhenQueueIsFullSizeShouldReturnCapacity)
+{
+	FillQueueWithInts();
+
+	EXPECT_EQ(capacity, queueWithInts->Size());
+}
+
+
+TEST_F(QueueTest, WhenQueueHasTwoItemsSizeShouldReturnTwo)
+{
+	queueWithInts->PushBack(11);
+	queueWithInts->PushBack(23);
+
+	EXPECT_EQ(2, queueWithInts->Size());
+}

@@ -10,6 +10,7 @@ public:
 
 	T PopFront();
 	T Peek() const;
+	int Size() const;
 	void PushBack(T object);
 
 	bool IsFull() const;
@@ -42,16 +43,6 @@ Queue<T>::~Queue()
 
 
 template<typename T>
-T Queue<T>::Peek() const
-{
-	if (IsEmpty())
-		throw std::underflow_error("Queue is empty.");
-	
-	return queue[front];
-}
-
-
-template<typename T>
 T Queue<T>::PopFront()
 {
 	if (IsEmpty())
@@ -62,6 +53,23 @@ T Queue<T>::PopFront()
 	size--;
 
 	return objectToReturn;
+}
+
+
+template<typename T>
+T Queue<T>::Peek() const
+{
+	if (IsEmpty())
+		throw std::underflow_error("Queue is empty.");
+	
+	return queue[front];
+}
+
+
+template<typename T>
+int Queue<T>::Size() const
+{
+	return size;
 }
 
 

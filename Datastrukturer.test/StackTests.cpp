@@ -146,3 +146,26 @@ TEST_F(StackTest, WhenPeekStackShouldNotRemoveLastPushedItem)
 
 	EXPECT_EQ(12, stackWithInts->Pop());
 }
+
+
+TEST_F(StackTest, WhenStackIsEmptySizeShouldReturnZero)
+{
+	EXPECT_EQ(0, stackWithInts->Size());
+}
+
+
+TEST_F(StackTest, WhenStackIsFullSizeShouldReturnCapacity)
+{
+	FillStackWithInts();
+
+	EXPECT_EQ(capacity, stackWithInts->Size());
+}
+
+
+TEST_F(StackTest, WhenStackHasTwoItemsSizeShouldReturnTwo)
+{
+	stackWithInts->Push(11);
+	stackWithInts->Push(23);
+
+	EXPECT_EQ(2, stackWithInts->Size());
+}
