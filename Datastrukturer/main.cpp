@@ -1,4 +1,6 @@
 #include <iostream>
+#include<string>
+#include <vector>
 #include "Doublelinkedlist.h"
 #include "Linkedlist.h"
 #include "SingleNode.h"
