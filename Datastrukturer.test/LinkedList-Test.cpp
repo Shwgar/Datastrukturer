@@ -184,7 +184,7 @@ TEST(LinkedListTests, WhenAddingAfterIndexItemAfterIndexShouldStillExists) {
 	list.InsertFirst(4, 4);
 	list.InsertAfterIndex(5, 5, 2);
 	int returnvalue = list.Search(3);
-	EXPECT_TRUE(3, returnvalue);
+	EXPECT_EQ(3, returnvalue);
 }
 
 
@@ -196,5 +196,18 @@ TEST(LinkedListTests, WhenAddingAfterKeyItemAfterIndexShouldStillExists) {
 	list.InsertFirst(4, 4);
 	list.InsertAfterKey(5, 5, 2);
 	int returnvalue = list.Search(3);
-	EXPECT_TRUE(3, returnvalue);
+	EXPECT_EQ(3, returnvalue);
+}
+
+TEST(LinkedListTests, WhenCreatingObjectLinkedlistListSizeShouldBeZero) {
+	Linkedlist<int, int> list;
+	int size = list.GetCount();
+	EXPECT_EQ(0, size);
+}
+
+TEST(LinkedListTests, WhenInsertingSeveralObjectsHeadDataShouldReturnLastInsertedData) {
+	Linkedlist<int, int> list;
+	list.InsertFirst(2, 2);
+	list.InsertFirst(3, 3);
+	EXPECT_EQ(3, list.getHeadData());
 }
