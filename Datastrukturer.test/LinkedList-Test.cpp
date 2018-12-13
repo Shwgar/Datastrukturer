@@ -17,6 +17,7 @@ TEST(LinkedListTests, WhenAddingNewItemFirstAddedIsNotAtHead) {
 	Linkedlist<int, int> list;
 	list.InsertFirst(9000, 1);
 	list.InsertFirst(1, 2);
+
 	EXPECT_NE(9000, list.getHeadData());
 }
 
@@ -131,7 +132,7 @@ TEST(LinkedListTests, WhenDeletingVectorThenVectorShoudNotBeFound) {
 	list.InsertFirst(vect1, 1);
 	list.InsertFirst(vect2, 2);
 	list.InsertFirst(vect3, 3);
-	list.DeleteKey(2);
+  list.DeleteKey(2);
 	EXPECT_THROW(std::vector<int> testReturn = list.Search(2), std::invalid_argument);
 }
 
@@ -146,7 +147,7 @@ TEST(LinkedListTests, WhenDeletingTemplateObjectInListWithOnlyTwoItemsListCountS
 	Linkedlist<int, int> list;
 	list.InsertFirst(9000, 1);
 	list.InsertFirst(9001, 2);
-	list.DeleteIndex(1);
+  list.DeleteIndex(1);
 	int listSize = list.GetCount();
 	EXPECT_EQ(1, listSize);
 }

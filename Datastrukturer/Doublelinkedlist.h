@@ -1,6 +1,5 @@
 #pragma once
 #include "DoubleNode.h"
-#include "enums.h"
 
 
 template<typename...> class Doublelinkedlist;

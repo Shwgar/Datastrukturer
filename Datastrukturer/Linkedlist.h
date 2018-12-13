@@ -1,6 +1,5 @@
 #pragma once
 #include "SingleNode.h"
-#include "enums.h"
 
 template<typename...> class Linkedlist;
 template<typename T, typename K>
