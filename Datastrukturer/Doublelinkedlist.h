@@ -11,7 +11,6 @@ private:
 	DoubleNode<T, K> *head;
 	DoubleNode<T, K> *tail;
 	int list_size;
-	//int max_size; ska inte behövas
 
 public:
 	Doublelinkedlist();
@@ -32,7 +31,6 @@ public:
 template<typename T, typename K>
 Doublelinkedlist<T, K>::Doublelinkedlist()
 {
-	//this->max_size = max_size;
 	this->head = nullptr;
 	this->tail = nullptr;
 	this->list_size = 0;
@@ -41,11 +39,11 @@ Doublelinkedlist<T, K>::Doublelinkedlist()
 template<typename T, typename K>
 Doublelinkedlist<T, K>::~Doublelinkedlist()
 {
-	DoubleNode<T, K> *temp = nullptr;
-	for (int i = 0; i < this->list_size; i++) {
-		temp = this->head->next;
+	DoubleNode<T, K> *tempNode = nullptr;
+	while (this->head != nullptr) {
+		tempNode = this->head->next;
 		delete[] head;
-		head = temp;
+		this->head = tempNode;
 	}
 }
 template<typename T, typename K>

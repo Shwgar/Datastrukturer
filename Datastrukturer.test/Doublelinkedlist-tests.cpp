@@ -166,7 +166,7 @@ TEST(Doublelinkedlisttests, TestToMakeSureLinkingStillWorksCorrectly) {
 
 	EXPECT_EQ("du", testlist.Search(1));
 }
-TEST(Doublelinkedlisttests, InsertTwoNodesAndDeleteOneGetCountShouldReturnCorrectValue) {
+TEST(Doublelinkedlisttests, GetCountShouldReturnCorrectWhenDeletingOneFromList) {
 	Doublelinkedlist<std::string, int> testlist;
 	testlist.InsertFirst("hej", 1);
 	testlist.InsertFirst("du", 1);
@@ -197,4 +197,18 @@ TEST(Doublelinkedlisttests, InsertAfterKeyShouldBecomeTailIfKeyIsTail) {
 	testlist.InsertLast("daa", 1);
 	testlist.InsertAfterKey("hejjj", 3, 1);
 	EXPECT_EQ("hejjj", testlist.getTail());
+}
+
+TEST(Doublelinkedlisttests, TestToSeeThatListContainsAllInputs) {
+	Doublelinkedlist<int, int> list;
+	list.InsertFirst(9000, 1);
+	list.InsertFirst(2, 2);
+	list.InsertFirst(3, 3);
+	list.InsertFirst(4, 4);
+	int one = list.Search(1);
+	int two = list.Search(2);
+	int three = list.Search(3);
+	int four = list.Search(4);
+	int total = one + two + three + four;
+	EXPECT_EQ(9009, total);
 }
