@@ -10,14 +10,13 @@ public:
 	Node(T data, K key);
 	T getData();
 	K getKey();
-	virtual ~Node();
+	virtual ~Node() {};
 };
 
 template<typename T, typename K>
 Node<T, K>::Node(T data, K key) {
 	this->data = data;
 	this->key = key;
-	// this->next = nullptr;
 }
 template<typename T, typename K>
 T Node<T, K>::getData() {
@@ -27,8 +26,3 @@ template<typename T, typename K>
 K Node<T, K>::getKey() {
 	return this->key;
 }
-template<typename T, typename K>
-Node<T, K>::~Node() {
-	//delete this->data;
-}
-
